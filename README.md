@@ -1,2 +1,1 @@
-# prelims
-Prelims and solutions
+# Preliminary Exams and Solutions
