@@ -1,0 +1,143 @@
+%\documentclass{article}
+\documentclass[11pt,oneside,a4paper]{article}
+\usepackage{amsmath, amssymb, graphics, setspace,epstopdf,caption,subcaption,a4wide,float}
+\usepackage[demo]{graphicx}
+\usepackage[a4paper,margin=3cm,footskip=.5cm]{geometry}
+
+
+
+\setlength{\parindent}{1cm}
+\newcommand{\emp}[1]{{}}
+\newcommand{\unicode}[1]{{}}
+
+
+\begin{document}
+\title{Prelim. Prep. Q4 (Quaife)}
+\author{Chad Sockwell}
+\date{5/10/16}
+\maketitle
+
+\section{Q4 ODE's (Spectral Deferred Correction or SDC)}
+Consider taking a single time step size of $\Delta t<1$ for the ODE 
+\begin{align} \label{prob}
+\begin{gathered}
+y'(t)=f(t,y)=y(t)^2\;, \\
+y(0)=1\;,\\
+y(t)=(1-t)^{-1}\;.
+\end{gathered}
+\end{align} 
+For stability reasons this ODE is typically cast into the from of a Picard Integral,
+\begin{equation}\label{picard}
+y(t)=y(0)+\int_0^t(y(\tau))^2\;d\tau\;,\;\;\;t\in[0,\Delta t]\;.
+\end{equation}
+In this form the SDC can be performed to produce a higher order time stepping method from several lower order time stepping iterations. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Part 1}
+We first use Forward Euler (FE) to find the first order approximate solution of the ODE, $y^{[1]}(\Delta t)$. The FE method for our one step over $t\in[0,\Delta t]$ has the from, 
+\begin{equation}
+y(\Delta t)\approx y(0)+\Delta t f(t,y(0))=y(0)+\Delta t (y(0))^2\;.
+\end{equation}
+For the Picard Integral equation (\ref{picard}), applying FE is equivalent to applying the Left-Hand Reimann sum to the integral. Applying the method to our problem (\ref{picard}),
+\begin{equation}
+y^{[1]}(\Delta t)=y(0)+\Delta t (y(0))^2=1+\Delta t(1)^2=1+\Delta t\;.
+\end{equation} 
+
+Now we must build a linear interpolant $y^{[1]}(t)$ over $t\in[0,\Delta t]$, using the initial value and solution at $\Delta t$ as interpolation points. The interpolant will have the form,
+\begin{equation}
+y^{[1]}(t)=y^{[1]}(0)L_0(t)+y^{[1]}(\Delta t) L_{\Delta t}(t)\;,
+\end{equation}
+where $L_{t_i}(t)$ are the Lagrange interpolating polynomials centered at $t={t_i}$.
+\begin{equation}
+L_0(t)=\frac{\Delta t-t}{\Delta t}\;,\;\;\; L_{\Delta t}(t)=\frac{t}{\Delta t}\;.
+\end{equation}
+Note that $y^{[1]}(0)=y(0)=1$.
+Our interpolating polynomial becomes,
+\begin{equation}\label{interp}
+y^{[1]}(t)=\frac{\Delta t-t}{\Delta t}+(1+\Delta t)\frac{t}{\Delta t}=(1+t)\;.
+\end{equation} 
+
+Now we would like to investigate the local truncation error of our solution. To this in a nice clean way, we can Taylor expand the true solution $y(t)$ in powers of $t$ and evaluate the series at $t=\Delta t$. Then the order of the local truncation errors in terms of $\Delta t$ can easily be seen. The true solution in power series from is,
+\begin{equation}
+y(t)=(1-t)^{-1}=\sum_{n=0} t^n=1+t+t^2+t^3+\cdots+t^k+\cdots
+\end{equation}
+Computing the local truncation error of the first order approximate solution $y^{[1]}(t)$ at $t=\Delta t$ gives, 
+\begin{equation}
+|y^{[1]}(\Delta t)-y(\Delta t)=|1 + \Delta t - (1 +\Delta t +\mathcal{O}(\Delta t^2))|=\mathcal{O}(\Delta t^2)
+\end{equation}
+The method indeed gives a second order local truncation error as we expect since FE is globally first order and locally second order convergent. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Part 2}
+Next we compute the residual exactly (or as high order as possible if the exact solution is not possible), this is CRITICAL to the SDC method.
+\begin{equation}
+r(t)=y^{[1]}(0)-y^{[1]}(t)+\int_0^t(y^{[1]}(\tau))^2\;d\tau\;.
+\end{equation}
+This can be evaluated using the interpolant for $y^{[1]}(0)$ we found earlier in (\ref{interp}). This gives,
+\begin{align}
+r(t)=1-(1+t)+\int_0^t(1+t)^2\;d\tau=1-(1+t)+\frac{1}{3}(1+t)^3|^{t}_{0}\nonumber\\
+=1-(1+t)+\frac{1}{3}(t^3+3t^2+3t+1)-\frac{1}{3}=\frac{1}{3}t^3+t^2\;.
+\end{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Part 3}
+Consider the error of the approximate solution from the exact solution, $e(t):=y(t)-y^{[1]}(t)$. Rearranging the error as $y(t)=e(t)+y^{[1]}(t)$ and inserting it into the Picard integral given in (\ref{picard}) gives,
+\begin{equation}
+e(t)+y^{[1]}(t)=e(0)+y^{[1]}(0)+\int_0^t(y^{[1]}(\tau)+e(\tau))^2\;d\tau\;,\;\;\;t\in[0,\Delta t]\;.
+\end{equation}
+We can assumes $e(0)=0$ since we know the solution at $t=0$ is the initial value given in the problem. Furthermore, after simplification of the equation above, we can rearrange it so that it contains the residual. 
+\begin{equation}
+e(t)=y^{[1]}(0)-y^{[1]}(t)+\int_0^t(y^{[1]}(\tau)+e(\tau))^2\;d\tau\;,\;\;\;t\in[0,\Delta t]\;.
+\end{equation}
+Now we add and subtract $\int_0^t(y^{[1]}(\tau))^2\;d\tau$ in order to form the residual in the equation,
+\begin{equation}
+e(t)=y^{[1]}(0)-y^{[1]}(t)+\int_0^t(y^{[1]}(\tau))^2\;d\tau+\int_0^t(y^{[1]}(\tau)+e(\tau))^2\;d\tau-\int_0^t(y^{[1]}(\tau))^2\;d\tau\;,\;\;\;t\in[0,\Delta t]\;,
+\end{equation}
+yielding
+\begin{equation}\label{error}
+e(t)=r(t)+\int_0^t(y^{[1]}(\tau)+e(\tau))^2-(y^{[1]}(\tau))^2\;d\tau\;,\;\;\;t\in[0,\Delta t]\;.
+\end{equation}
+This is the ODE form of the error in the SDC method. The Error can be solved for using an approximate method and the solution can refined iteratively, each time finding the new approximate error for the new new refined solution. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Part 4}
+Now we use FE method on the error ODE given in (\ref{error}) and step from $t=0$ to $t=\Delta t$. We call this first order approximate solution for the error $e^{[1]}(t)$. Once again applying FE to the Picard integral corresponds to applying the Left-Hand Riemann sum to the integral. 
+\begin{equation}
+e^{[1]}(\Delta t)=+r(\Delta t)+\Delta t [(y^{[1]}(0)+e(0))^2-(y^{[1]}(0))^2]\;.
+\end{equation}
+\begin{equation}
+e^{[1]}(\Delta t)=(\frac{1}{3}\Delta t^3+\Delta t^2)+\Delta t[ (1+0)^2-(1)^2]=(\frac{1}{3}\Delta t^3+\Delta t^2)\;.
+\end{equation}
+We could build an interpolating polynomial as we did last time, but we do not need to since we only want to evaluate the local truncation error at $t=\Delta t$. We needed the interpolant for $y^{[1]}(t)$  to integrate the residual exactly. Now that we have the error we update our previous first order approximate solution and from and approximate and hopefully second order solution.
+\begin{equation}
+y^{[2]}(\Delta t)=y^{[1]}(\Delta t)+e^{[1]}(\Delta t)=1+\Delta t + \Delta t^2 +\frac{1}{3} \Delta t^3
+\end{equation}
+To find the error we evaluate $|y^{[2]}(\Delta t)-y(\Delta t)|=\mathcal{O}(\Delta t ^3)$. This gives
+\begin{equation}
+|y^{[2]}(\Delta t)-y(\Delta t)=|1 + \Delta t +\Delta t^2 +\frac{1}{3}\Delta t^3 - (1 +\Delta t +\mathcal{O}(\Delta t^2)|=\mathcal{O}(\Delta t^3)
+\end{equation}
+Now the refined solution has a $\mathcal{O}(\Delta t^3)$ local truncation error.
+
+%\begin{center}
+%\textbf{Table 2}    
+%\begin{tabular}{|l |l |  }
+% \hline            
+%bins & error\\  \hline            
+% 10  &2.5292\\  \hline            
+% 20  &2.2157\\  \hline            
+% 30  & 2.1740\\  \hline            
+% 50 & 2.1265\\  \hline            
+% 70 & 2.0826\\  \hline            
+% 100& 1.9915\\  \hline            
+
+%\end{tabular}
+%\end{center}
+
+%\begin{figure}[p]
+   
+%      \centering
+
+%                \includegraphics[width=\textwidth]{time_err.jpg}
+%               \caption{A semilogy plot of error vs time.}
+%\end{figure}
+
+
+
+
+\end{document}
