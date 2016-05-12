@@ -2,7 +2,7 @@
 
 ## Question topics
 
-- **2016**
+### 2016
 
 _Spring_
 
@@ -18,7 +18,7 @@ _Spring_
 10. Data Structure (Dr. Erlebacher)
 11. Parallelization and Molecular Dynamics (Dr. Plewa)
 
-- **2015**
+### 2015
 
 _Spring_
 
@@ -48,7 +48,7 @@ _Summer_
 10. Monte Carlo Integration (Shanbhag)
 11. Numerical Partial Differential Equations (Erlebacher)
 
-- **2014**
+### 2014
 
 _Spring_
 
@@ -64,7 +64,7 @@ _Spring_
 10. Numerical Integration (Dr. Beerli)
 11. PDEs: (Dr. Plewa)
 
-- **2013**
+### 2013
 
 _Spring_
 
@@ -81,7 +81,7 @@ _Spring_
 11. Molecular Dynamics (Dr. Shanbhag)
 12. PDEs (Dr. Plewa)
 
-- **2012**
+### 2012
 
 _Spring_
 
@@ -98,7 +98,7 @@ _Spring_
 11. Statistics (Dr. Ye)
 12. Integration (Dr. Beerli)
 
-- **2011**
+### 2011
 
 _Spring_
 
@@ -128,7 +128,7 @@ _Summer_
 10. Ordinary Differential Equations (Dr. Erlebacher)
 11. Statistics and Random Processes (Dr. Beerli)
 
-- **2010**
+### 2010
 
 _Spring_
 
@@ -158,7 +158,7 @@ _Summer_
 10. Data structure
 11. Numerical differentiation
 
-- **2009**
+### 2009
 
 _Spring_
 
@@ -174,7 +174,7 @@ _Spring_
 10. Linear Programming
 11. Statistical Methods
 
-- **2008**
+### 2008
 
 _Spring_
 
