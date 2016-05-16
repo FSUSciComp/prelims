@@ -29,33 +29,48 @@
 \subsection*{a)} 
 We are given the trapezoidal quadrature method below
 \begin{equation*}
-I(f) = \int_a^b f(x) dx = \dfrac{b-a}{2} \left[f(a) + f(b)\right] + K_1(b-a)^2 + K_2(b-a)^4 + \dots
+I(f) = \int_a^b f(x) dx = \dfrac{b-a}{2} \left[f(a) + f(b)\right] + K_1(b-a)^2 +
+K_2(b-a)^4 + \dots
 \end{equation*}
-If we divide our domain $[a,b]$ using $M$ subintervals of length $h$, we can evaluate the approximation $\hat{I}_h(f)$ for each subinterval and sum these values over the entire domain to get $\hat{I}(f)$. The first error term is given $\frac{f''(\xi)(b-a)}{12}(b-a)^2$ which we can use to evaluate the equispaced trapezoid formula.
+If we divide our domain $[a,b]$ using $M$ subintervals of length $h$, we can
+evaluate the approximation $\hat{I}_h(f)$ for each subinterval and sum these
+values over the entire domain to get $\hat{I}(f)$. The first error term is given
+$\frac{f''(\xi)(b-a)}{12}(b-a)^2$ which we can use to evaluate the equispaced
+trapezoid formula.
 \begin{equation*}
-\hat{I}(f) = \sum_{i=1}^{M} \left( \dfrac{h}{2} \left[f(a+h(i-1)) + f(a+hi)\right] + \dfrac{f''(\xi)h^3}{12} \right)
+\hat{I}(f) = \sum_{i=1}^{M} \left( \dfrac{h}{2} \left[f(a+h(i-1)) +
+f(a+hi)\right] + \dfrac{f''(\xi)h^3}{12} \right)
 \end{equation*}
 We should get 2nd order accuracy for this method.
 
 \subsection*{b)}
-The approximation $\hat{I}(f)$ above is equivalent to $T_{M,1}$ for this problem. To get $T_{2M,1}$ we sum over $2M$ intervals of length $h/2$.
+The approximation $\hat{I}(f)$ above is equivalent to $T_{M,1}$ for this
+problem. To get $T_{2M,1}$ we sum over $2M$ intervals of length $h/2$.
 \begin{equation*}
 \begin{split}
-T_{M,1} &= \sum_{i=1}^{M} \left( \dfrac{h}{2} \left[f(a+h(i-1)) + f(a+hi)\right] + \dfrac{f''(\xi)h^3}{12} + K_2h^4 \right) \\
-&= \sum_{i=1}^{M} \dfrac{h}{2} \left[f(a+h(i-1)) + f(a+hi)\right] + \dfrac{Mf''(\xi)h^3}{12} + MK_2h^4
+T_{M,1} &= \sum_{i=1}^{M} \left( \dfrac{h}{2} \left[f(a+h(i-1)) + f(a+hi)\right]
++ \dfrac{f''(\xi)h^3}{12} + K_2h^4 \right) \\
+&= \sum_{i=1}^{M} \dfrac{h}{2} \left[f(a+h(i-1)) + f(a+hi)\right] +
+\dfrac{Mf''(\xi)h^3}{12} + MK_2h^4
 \end{split}
 \end{equation*}
 \begin{equation*}
 \begin{split}
-T_{2M,1} &= \sum_{i=1}^{2M} \left( \dfrac{h}{4} \left[f(a+\frac{h(i-1)}{2}) + f(a+\frac{hi}{2})\right] + \dfrac{f''(\xi)h^3}{96} + K_2h^4 \right) \\
-&= \sum_{i=1}^{2M} \dfrac{h}{4} \left[f(a+\frac{h(i-1)}{2}) + f(a+\frac{hi}{2})\right] + \dfrac{2Mf''(\xi)h^3}{96} + 2MK_2h^4
+T_{2M,1} &= \sum_{i=1}^{2M} \left( \dfrac{h}{4} \left[f(a+\frac{h(i-1)}{2}) +
+f(a+\frac{hi}{2})\right] + \dfrac{f''(\xi)h^3}{96} + K_2h^4 \right) \\
+&= \sum_{i=1}^{2M} \dfrac{h}{4} \left[f(a+\frac{h(i-1)}{2}) +
+f(a+\frac{hi}{2})\right] + \dfrac{2Mf''(\xi)h^3}{96} + 2MK_2h^4
 \end{split}
 \end{equation*}
-We can subtract $T_{M,1}$ from $T_{2M,1}$ in the following manner so that the coefficients for both methods add up to 1.
+We can subtract $T_{M,1}$ from $T_{2M,1}$ in the following manner so that the
+coefficients for both methods add up to 1.
 \begin{equation*}
 \begin{split}
 T_{2M,2} &= \dfrac{4}{3} \left( T_{2M,1}-\dfrac{T_{M,1}}{4} \right) \\
-&= \dfrac{4}{3} \sum_{i=1}^{2M} \dfrac{h}{4} \left[f(a+\frac{h(i-1)}{2}) + f(a+\frac{hi}{2})\right] \\ &\hspace{1em} - \dfrac{1}{3} \sum_{i=1}^{M} \dfrac{h}{2} \left[f(a+h(i-1)) + f(a+hi)\right] + \dfrac{8MK_2h^4}{3} - \dfrac{MK_2h^4}{12}
+&= \dfrac{4}{3} \sum_{i=1}^{2M} \dfrac{h}{4} \left[f(a+\frac{h(i-1)}{2}) +
+f(a+\frac{hi}{2})\right] \\ &\hspace{1em} - \dfrac{1}{3} \sum_{i=1}^{M}
+    \dfrac{h}{2} \left[f(a+h(i-1)) + f(a+hi)\right] + \dfrac{8MK_2h^4}{3} -
+    \dfrac{MK_2h^4}{12}
 \end{split}
 \end{equation*}
 We should get a 4th order accuracy for this combined method.
@@ -71,7 +86,9 @@ sp2016\_2ii.py:
 \end{lstlisting}
 
 \subsection*{d)}
-We can use Romberg integration to combine approximations $T_{k,i}$ where i is the new i'th ``sequence''. In the pseudo code below, m represents the number of step sizes.
+We can use Romberg integration to combine approximations $T_{k,i}$ where i is
+the new i'th ``sequence''. In the pseudo code below, m represents the number of
+step sizes.
 \begin{lstlisting}
 for all i in i's
   for all m in M's
