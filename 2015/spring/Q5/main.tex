@@ -1,0 +1,74 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\title{Q5. Numerical Quadrature: (Dr. Shanbhag )}
+
+\author{Amirhessam Tahmassebi}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+
+\section{Method}
+
+For this problem, I have used Green's Theorem:\\
+Let C be a positively oriented, piece-wise smooth, simple closed curve in a plane, and let D be the region bounded by C. If L and M are functions of (x, y) defined on an open region containing D and have continuous partial derivatives there, then:\\
+
+$$\oint_C (L\,dx + M\,dy) = \iint_S (\frac{\partial M}{\partial x}-\frac{\partial L}{\partial y}) \,dx\,dy$$\\
+where the path of integration along C is counterclockwise.\\
+
+So, easily we can implement our integrals for area, central positions and gyration radius. \\\\
+Area:
+$$Area = \iint_S  \,dx\,dy$$
+$$\Longrightarrow (\frac{\partial M}{\partial x}-\frac{\partial L}{\partial y}) = 1 \Longrightarrow (M=x \quad \textrm{and} \quad L=0 )$$ 
+$$\Longrightarrow Area = \oint_C  x\,dy $$\\
+
+$X_{cm}$:
+$$X_{cm} =\frac{1}{Area}\iint_S x \,dx\,dy$$
+$$\Longrightarrow (\frac{\partial M}{\partial x}-\frac{\partial L}{\partial y}) = x \Longrightarrow (M=\frac{x^2}{2} \quad \textrm{and} \quad L=0 )$$ 
+$$\Longrightarrow X_{cm} = \frac{1}{Area}\oint_C  \frac{x^2}{2}\,dy $$\\
+
+
+$Y_{cm}$:
+$$Y_{cm} =\frac{1}{Area}\iint_S y \,dx\,dy$$
+$$\Longrightarrow (\frac{\partial M}{\partial x}-\frac{\partial L}{\partial y}) = y \Longrightarrow (M=0 \quad \textrm{and} \quad L=-\frac{y^2}{2} )$$ 
+$$\Longrightarrow Y_{cm} = \frac{-1}{Area}\oint_C  \frac{y^2}{2}\,dy $$
+But, here we need to be careful about path C which is always counter clockwise. At the end, we will come up with another negative sign due to the path.
+$$\Longrightarrow Y_{cm} = \frac{1}{Area}\oint_C  \frac{y^2}{2}\,dy $$
+
+$X_{g}^2$:
+$$X_{g}^2 =\frac{1}{Area}\iint_S (x-X_{cm})^2 \,dx\,dy$$
+$$\Longrightarrow (\frac{\partial M}{\partial x}-\frac{\partial L}{\partial y}) = (x-X_{cm})^2 \Longrightarrow (M=\frac{(x-X_{cm})^3}{3} \quad \textrm{and} \quad L=0 )$$ 
+$$\textrm{Due to the path}\Longrightarrow X_{g}^2 = \frac{-1}{Area}\oint_C  \frac{(x-X_{cm})^3}{3}\,dy $$\\
+
+$Y_{g}^2$:
+$$Y_{g}^2 =\frac{1}{Area}\iint_S (y-Y_{cm})^2 \,dx\,dy$$
+$$\Longrightarrow (\frac{\partial M}{\partial x}-\frac{\partial L}{\partial y}) = (y-Y_{cm})^2 \Longrightarrow (M=0 \quad \textrm{and} \quad L=-\frac{(y-Y_{cm})^3}{3} )$$ 
+$$\textrm{Due to the path }\Longrightarrow Y_{g}^2 = \frac{1}{Area}\oint_C  \frac{(y-Y_{cm})^3}{3}\,dy $$\\
+
+$$R_{Gyration}^2 = X_{g}^2+Y_{g}^2$$
+
+
+
+\section{Results}
+
+The Area = 565.486677646 \\
+The $X_{cm}$ = 2.63488313796e-16 \\
+The $Y_{cm}$ = 0.833333333333 \\
+The $R_{G}$ = 101.433333333 \\
+
+
+
+
+
+
+\end{document}
