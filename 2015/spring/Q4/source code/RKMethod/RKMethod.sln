@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RKMethod", "RKMethod\RKMethod.vcxproj", "{B2191EFB-700C-455D-BFBB-243DA6677E30}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D8F876D-12F4-4416-9AFE-C614A2ACC21F} = {0D8F876D-12F4-4416-9AFE-C614A2ACC21F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RKlib", "RKlib\RKlib.vcxproj", "{0D8F876D-12F4-4416-9AFE-C614A2ACC21F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExRKMethod", "ExRKMethod\ExRKMethod.vcxproj", "{5AE580A6-5220-4970-87F5-1E1384B5A62F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{49B527F6-2119-42E6-A4D0-AC5D8E1D14E0} = {49B527F6-2119-42E6-A4D0-AC5D8E1D14E0}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExRKlib", "ExRKlib\ExRKlib.vcxproj", "{49B527F6-2119-42E6-A4D0-AC5D8E1D14E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2191EFB-700C-455D-BFBB-243DA6677E30}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B2191EFB-700C-455D-BFBB-243DA6677E30}.Debug|Win32.Build.0 = Debug|Win32
+		{B2191EFB-700C-455D-BFBB-243DA6677E30}.Release|Win32.ActiveCfg = Release|Win32
+		{B2191EFB-700C-455D-BFBB-243DA6677E30}.Release|Win32.Build.0 = Release|Win32
+		{0D8F876D-12F4-4416-9AFE-C614A2ACC21F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0D8F876D-12F4-4416-9AFE-C614A2ACC21F}.Debug|Win32.Build.0 = Debug|Win32
+		{0D8F876D-12F4-4416-9AFE-C614A2ACC21F}.Release|Win32.ActiveCfg = Release|Win32
+		{0D8F876D-12F4-4416-9AFE-C614A2ACC21F}.Release|Win32.Build.0 = Release|Win32
+		{5AE580A6-5220-4970-87F5-1E1384B5A62F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5AE580A6-5220-4970-87F5-1E1384B5A62F}.Debug|Win32.Build.0 = Debug|Win32
+		{5AE580A6-5220-4970-87F5-1E1384B5A62F}.Release|Win32.ActiveCfg = Release|Win32
+		{5AE580A6-5220-4970-87F5-1E1384B5A62F}.Release|Win32.Build.0 = Release|Win32
+		{49B527F6-2119-42E6-A4D0-AC5D8E1D14E0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{49B527F6-2119-42E6-A4D0-AC5D8E1D14E0}.Debug|Win32.Build.0 = Debug|Win32
+		{49B527F6-2119-42E6-A4D0-AC5D8E1D14E0}.Release|Win32.ActiveCfg = Release|Win32
+		{49B527F6-2119-42E6-A4D0-AC5D8E1D14E0}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
