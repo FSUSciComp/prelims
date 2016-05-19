@@ -1,3 +1,4 @@
+
 # A.T. 7-May-2016
 # Q3.py
 # A program to use MC integration
@@ -8,7 +9,7 @@ import matplotlib.pyplot as plt
 
 # definition of function
 def fxy(x,y):
-	return x * (1.0/20216.34) * np.exp(-0.5*(x**2 * y**2 + x**2 + y**2 - 8*x - 8*y))
+	return  (1.0/20216.34) * np.exp(-0.5*(x**2 * y**2 + x**2 + y**2 - 8*x - 8*y))
 	
 
 # proposal Function
@@ -39,45 +40,79 @@ def metropolis_accept(newx , newy, oldx, oldy):
 	return accept , x ,y
 	
 
+# Definin a function to the MAIN LOOP
+
+
 # Preliminaries
+def Main_Loop(nsteps):
+	domain = np.array([[-np.inf,np.inf],[-np.inf,np.inf]]) # The whole space (-inf,inf )*(-inf,inf)
+	#nsteps = 100000 # number of steps in the MCMC chain
+	delta = 10. # delta for proposal 
 
-domain = np.array([[-np.inf,np.inf],[-np.inf,np.inf]]) # The whole space (-inf,inf )*(-inf,inf)
-nsteps = 100000 # number of steps in the MCMC chain
-delta = 10. # delta for proposal 
-thin = 10 # save every 10th point
+	# initial state
+	x = 0.0
+	y = 0.0
 
-# initial state
-x = 0.0
-y = 0.0
+	AccRatio = 0.0 # Initial value for Acceptance Ratio
+	NumSucc = 0 # Number of successes
+	# Arrays for recording all of the Successful points (X,Y)
+	recX = []
+	recY = [] 
 
-AccRatio = 0.0 # Initial value for Acceptance Ratio
-NumSucc = 0 # Number of successes
-recz = np.zeros((nsteps/thin,2)) # record of points sampled after thining
-
-# Main Loop
+	# Main Loop
 
 
-for iMCS in range(nsteps):
-	# propose -> accept
+	for iMCS in range(nsteps):
+		# propose -> accept
 	
-	newx , newy = proposal(x , y , delta ,domain)
-	accept , newx , newy = metropolis_accept(newx , newy , x , y)
+		newx , newy = proposal(x , y , delta ,domain)
+		accept , newx , newy = metropolis_accept(newx , newy , x , y)
 	
-	if accept:
-		NumSucc += 1 
-		x , y = newx , newy
+		if accept:
+			NumSucc += 1 
+			x , y = newx , newy
+			recX.append(x)
+			recY.append(y)
+
 		
-	if (iMCS % thin) == 0:# Record
-		recz[iMCS/thin] = [x , y]
-		
-# Acceptance Ratio 	
-AccRatio = float(NumSucc)/float(nsteps)
+	# Acceptance Ratio 	
+	AccRatio = float(NumSucc)/float(nsteps)
+	EX = np.mean(recX)
+	EY = np.mean(recY)
+	Error_X = np.std(recX)/np.sqrt(nsteps)
+	Error_Y = np.std(recY)/np.sqrt(nsteps)
 	
+	return EX, EY ,Error_X, Error_Y, recX , recY	, NumSucc , AccRatio
+
+# Calling the Function 
+EX, EY , Error_X, Error_Y , recX , recY ,NumSucc , AccRatio= Main_Loop(100000)
+
 print "Acceptance Ratio = " + str(AccRatio) 
 print "Number of Successes = " +  str(NumSucc)
+print "Expectation Value X = " + str(EX)
+print "Expectation Value Y = " + str(EY)
 
-
-# Plotting the number of points we used as darts		
+#Plotting the number of points we used as darts		
 fig = plt.figure()
-plt.plot(recz[:,0],recz[:,1],'k.')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title("Successful Sample Points")
+plt.plot(recX,recY,'k.')
+plt.show()
+
+
+# For Finding the Accuracy 1e-3 we will have:
+
+NN = 10**np.array([2,3,4,5,6,7])
+Er_X = []
+for j in NN:
+	EX, EY , Error_X, Error_Y , recX , recY ,NumSucc , AccRatio= Main_Loop(j)
+	Er_X.append(Error_X)
+
+## Plotting Accuracy
+fig = plt.figure()
+plt.xlabel('Sample Points')
+plt.ylabel('Error X')
+plt.title("Error VS Sample Points")
+plt.loglog(NN,Er_X,'o-')
 plt.show()
