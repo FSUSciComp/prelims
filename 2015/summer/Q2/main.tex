@@ -1,0 +1,101 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\title{Q2. Linear Algebra: (Dr. Wang )\\Summer 2015}
+
+
+\author{Amirhessam Tahmassebi}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+Consider the following matrix:
+
+\[A=
+\begin{bmatrix}
+  1 & 0 & 0 \\
+  1 & 0 & 1 \\
+  0 & 1 & 0 \\
+\end{bmatrix}
+\]
+
+Part-a): \\
+Using mathematical induction we have: \\
+
+$$n=3 \longrightarrow A^3 = A + A^2 -I$$
+$$p(3) = A^3 = A + A^2 -I$$ our formula is true for n=3
+$$p(k) = A^k = A^{k-2} + A^2 - I$$ we assume that is true for n = k
+$$p(k+1) = A^{k+1} = A^{k-1} +A^2 -I$$ we are going to show that it is true for n = k+1. \\
+
+$$Ap(k) = A(A^k) = A(A^{k-2} + A^2 -I) = A^{k-1} + A^3 - A$$ Now we use our $p(3)$ here:
+
+$$\Longrightarrow Ap(k) = A^{k-1} + A + A^2 - I - A =A^{k-1} + A^2 - I =p(k+1)$$
+
+
+
+
+Part-b): \\
+
+For calculating $A^{100}$ we have:\\
+
+Using formula: $ A^n = A^{n-2} + A^2 -I$ we have: \\
+$$n=4 \longrightarrow A^4 = A^2+A^2 - I = 2A^2-I$$
+$$n=6 \longrightarrow A^6 = A^4+A^2 - I = 2A^2-I + A^2 - I = 3A^2 - 2I$$
+$$n=8 \longrightarrow A^8 = A^6+A^2 - I =3A^2 - 2I + A^2 -I = 4A^2 -3I$$
+$$\vdots$$
+$$\vdots$$
+$$A^{N} = \frac{N}{2}A^2 - (\frac{N}{2} -1)I$$
+
+Here for$ N = 100$ we have:
+
+$$A^{100} = 50A^2 - 49I$$
+
+We have:\\
+
+
+\[A^2=
+\begin{bmatrix}
+  1 & 0 & 0 \\
+  1 & 1 & 0 \\
+  1 & 0 & 1 \\
+\end{bmatrix}
+\]
+
+
+So, we have to just multiply $A^2$ with 50 and subtract from $49I$, then we will have: \\
+
+
+\[A^{100}=
+\begin{bmatrix}
+  1 & 0 & 0 \\
+  50 & 1 & 0 \\
+  50 & 0 & 1 \\
+\end{bmatrix}
+\]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
