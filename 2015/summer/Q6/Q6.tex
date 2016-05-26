@@ -1,0 +1,162 @@
+\documentclass{article}
+\usepackage{hyperref}
+
+\begin{document}
+
+\section{Central Differnece}
+
+First lets take the Taylor series of these two terms
+
+\[
+    f(x + h) = f(x) + f^{\prime}(x) h + 
+    \frac{f^{\prime\prime}(x) h^2}{2!} +
+    \frac{f^{\prime\prime\prime}(x) h^3}{3!}+
+    \frac{f^{(4)}(x) h^4}{4!}+
+    \frac{f^{(5)}(x) h^5}{5!}+ \dots
+\]
+\[
+    f(x - h) = f(x) - f^{\prime}(x) h + 
+    \frac{f^{\prime\prime}(x) h^2}{2!} -
+    \frac{f^{\prime\prime\prime}(x) h^3}{3!}+
+    \frac{f^{(4)}(x) h^4}{4!}-
+    \frac{f^{(5)}(x) h^5}{5!}+ \dots
+\]
+and subtract the results
+\[
+    D_1 \equiv f(x+h) - f(x-h) = 
+    2 f^{\prime}(x) h + 
+    \frac{2f^{\prime\prime\prime}(x) h^3}{3!}+
+    \frac{2f^{(5)}(x) h^5}{5!}+ \dots
+\]
+After some rearranging we find
+\[
+    f^{\prime}(x) = \frac{f(x+h)-f(x-h)}{2h} -
+    \frac{f^{\prime\prime\prime}(x) h^2}{3!}-
+    \frac{f^{(5)}(x) h^4}{5!}+ \dots
+\]
+\[
+        f^{\prime}(x) = \frac{f(x+h)-f(x-h)}{2h} + \mathcal{O}(h^2)
+\]
+Following a similar procedure from above we find 
+\[
+    D_2 \equiv f(x+2h) - f(x-2h) = 
+    4 f^{\prime}(x) h + 
+    \frac{16f^{\prime\prime\prime}(x) h^3}{3!}+
+    \frac{64f^{(5)}(x) h^5}{5!}+ \dots
+\]
+The $h$ and the $2h$ results can be compined to form
+\[
+    8D_1 - D_2 = f(x-2h) -8f(x-h) + 8f(x+h) - f(x+2h) = 
+    12h \bigg(f^{\prime}(x) - \frac{f^{(5)}(x) h^4}{30}+ \dots \bigg)
+\]
+Notice that the $\mathcal{O}(h^2)$ term cancels
+\[
+f^{\prime} = 
+    \frac{f(x-2h) -8f(x-h) + 8f(x+h) - f(x+2h)}{12h}+\mathcal{O}(h^4)
+\]
+
+\section{Numerical Results}
+
+See python code
+
+\section{Richardson Extrapolation}
+
+
+Lets rewrite our central difference formula as such
+\[
+    f^{\prime}_{h}(x) = \mathcal{N}(h) -
+    \frac{f^{\prime\prime\prime}(x) h^2}{6}-
+    \frac{f^{(5)}(x) h^4}{120}+ \dots
+\]
+
+\[
+        \mathcal{N}(h) \equiv  \frac{f(x+h)-f(x-h)}{2h}
+\]
+If we replace $h$ with $h/2$ we find
+\[
+    f^{\prime}_{h/2}(x) = \mathcal{N}(h/2) -
+    \frac{f^{\prime\prime\prime}(x) h^2}{24}-
+    \frac{f^{(5)}(x) h^4}{1920}+ \dots
+\]
+The $h$ and the $h/2$ results can be compined to form
+\[
+    4f^{\prime}_{h/2}(x)-f^{\prime}_{h}(x)   = 
+    3f^{\prime}(x) = 4\mathcal{N}(h/2) - \mathcal{N}(h) +
+    \frac{f^{(5)}(x) h^4}{160}+ \dots
+\]
+Notice that the $\mathcal{O}(h^2)$ term cancels just as before but the
+truncation error converges much faster. Finally we are left with
+\[
+    f^{\prime}(x) = \mathcal{N}(h/2)+ 
+    \frac{\mathcal{N}(h/2) - \mathcal{N}(h)}{3}
+    + \mathcal{O}(h^4)
+\]
+For further reading I suggest
+\url{https://www.math.washington.edu/~greenbau/Math_498/lecture04_richardson.pdf}
+
+\section{Lanczos Formula}
+\[
+    g^{\prime}(x) = \lim_{h \rightarrow 0} \frac{3}{2h^3}
+    \int_{-h}^{h} t g(x+t) dt
+\]
+Newton-Cotes integration rule, 
+\[
+    \int_{-h}^{h} f(x)dx = 
+    \frac{h}{4} \left(
+            f(-h) + 3f\left(-\frac{h}{3}\right) + 3f\left(\frac{h}{3}\right) + f(h)
+\right)
+    + \mathcal{O}(h^5)
+\]
+Using NC and the definition of $g^{\prime}$ show 
+\[
+        g^{\prime}(x) =  \frac{A}{4} \left(
+            -g(x-h) 
+            -g\left(x-\frac{h}{3}\right) +
+            g\left(x+\frac{h}{3}\right) +
+            g(x+h)
+\right)
+    + \mathcal{O}(h^p)
+\]
+find $A$ and $p$
+
+Lets plug the NC formula into our definition of $g^{\prime}$
+\[
+        g^{\prime}(x) =  \frac{3}{2h^3}\left[
+    \frac{h}{4} \left(
+            -hg(x-h) + 
+            3\left(-\frac{h}{3}\right)g\left(x-\frac{h}{3}\right) +
+            3\left(\frac{h}{3}\right)g\left(x+\frac{h}{3}\right) +
+            hg(x+h)
+\right)
+    + \mathcal{O}(h^5)
+    \right]
+\]
+and pull out a $h$
+\[
+        g^{\prime}(x) =  \frac{3}{2h^3}\left[
+    \frac{h^2}{4} \left(
+            -g(x-h)
+            -g\left(x-\frac{h}{3}\right) +
+            g\left(x+\frac{h}{3}\right) +
+            g(x+h)
+\right)
+    + \mathcal{O}(h^5)
+    \right]
+\]
+We are then left with 
+\[
+        g^{\prime}(x) =  \frac{3}{2h}\frac{1}{4} \left(
+            -g(x-h) 
+            -g\left(x-\frac{h}{3}\right) +
+            g\left(x+\frac{h}{3}\right) +
+            g(x+h)
+\right)
+    + \mathcal{O}(h^2)
+\]
+\[
+        A =\frac{3}{2h} 
+\]
+\[
+        p = 2
+\]
+\end{document}
