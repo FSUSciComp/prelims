@@ -1,0 +1,527 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{amsmath,amsfonts,mathtools,enumerate,graphicx,url}
+
+% use lot of real estate
+\usepackage[papersize={8.5in,11in}, ignoreall, top=1in,bottom=0.5in,left=1.25in,right=1.25in]{geometry}
+
+% spacing to slightly comfortable
+\usepackage{setspace}
+\setstretch{1.1}
+
+% no page numbers and indents
+\setlength{\parindent}{0pt} 
+\pagestyle{empty}
+
+% enable coloring
+\usepackage[usenames,dvipsnames]{xcolor}
+\newcommand{\highlight}[1]{\textcolor{BrickRed}{#1}}
+
+
+% Set the beginning of a LaTeX document
+\begin{document}
+
+% Redefine "plain" pagestyle
+\makeatletter	   % `@' is now a normal "letter' for LaTeX
+\renewcommand{\ps@plain}{%
+     \renewcommand{\@oddhead}{\textrm{\small {Spring 2013}}\hfil\textrm{\thepage}}% 
+     \renewcommand{\@evenhead}{\@oddhead}%
+     \renewcommand{\@oddfoot}{}% empty footer
+     \renewcommand{\@evenfoot}{\@oddfoot}}
+\makeatother     % `@' is restored as a "non-letter" character
+
+\title{
+\hrule 
+\bigskip
+Department of Scientific Computing\\
+\highlight{\textbf{Written Preliminary Examination}} \\
+Spring 2013 \\
+}         % Enter your title between curly braces
+\author{}        % Enter your name between curly braces
+\date{January 11--14, 2013}          % Enter your date or \today between curly braces
+\maketitle
+
+% Set to use the "plain" pagestyle
+\pagestyle{plain}
+
+\hrule 
+\bigskip
+\textit{Instructions:}
+
+\bigskip
+
+\begin{itemize}
+\item Solve only 10 of the 12 questions as completely as you can. 
+
+\item All questions are weighted equally.
+
+\item All parts of a question are weighted equally unless stated otherwise.
+
+\item If you use web sources, please list them clearly.
+
+\item The exam is due back to Maribel Amwake no later than 1:00 pm on Monday, January 14, 2013; no exceptions allowed.
+
+\item If you have any questions related to this exam as you work on it, please send an e-mail to the person responsible, \textit{and} Dr. Sachin Shanbhag (sshanbhag at fsu dot edu). The person responsible is listed at the beginning of each question.
+
+\item Write your Student ID on each of your answer sheets. Do not write your name on your answer sheets. When turning in your exam, include a cover page with your name and Student ID.
+
+\end{itemize}
+
+\medskip
+\hrule
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q1}. \highlight{\textbf{Optimization}} (Dr. Navon)
+\label{q1}
+\bigskip
+
+Use the Augmented Lagrangian method to solve the equality constrained problem
+$$\min f(x)=6x_1^2 + 4x_1x_2 + 3x_2^2$$
+$$ s.t. \quad h(x)=x_1 +x_2 -5 =0$$
+
+Construct the Augmented Lagrangian
+$$L(x,\lambda , r_k) = f(x) - \lambda h(x) + r_k h^2 (x)$$
+where $r_k$ is the penalty parameter.
+
+Start with $r_k=1$ and $\lambda ^{(1)} = 0$. The necessary conditions for the stationary point of $L$ yield $x_1^{(1)}$ and $x_2^{(1)}$ as a function of $r_k$ and $\lambda^{(1)}$.
+
+\medskip
+
+For the next iteration update penalty by $r_{k+1} = 2 r_k$ and the multiplier
+by $\lambda^{(k+1)} = \lambda^{(k)} - 2 r_k h(x^k)$.
+
+\medskip
+
+Carry out the procedure for one more iteration by  substituting new values of $\lambda^{(k+1)}$ and $r_{k+1}$  and obtain values of $x_1^{(2)}$, $x_2^{(2)}$ and $h(x^{(2)})$.
+
+\medskip
+
+Comment on the rate of convergence of the Augmented Lagrangian method.
+
+\bigskip
+\hrule \medskip
+
+\pagebreak
+
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q2}. \highlight{\textbf{Fourier Analysis}} (Dr. Meyer-Baese)
+\label{q2}
+\bigskip
+
+\begin{enumerate}
+\item A periodic signal $g(t)$ is expressed by the following Fourier series:
+
+\begin{equation}
+g(t)= 5\sin 2t + 4 \sin(4t-\pi/2) + 5\cos(7t - \pi/5)
+\end{equation}
+
+\begin{enumerate}[a)]
+
+\item Sketch the exponential Fourier
+ series spectra.
+
+\item Write the exponential Fourier series for $g(t)$.
+
+
+\end{enumerate}
+
+\item From the definition $G(\omega)=\int_{-\infty}^{\infty}
+g(t) e^{-j\omega t}dt $ show that the Fourier transform of
+sinc(t-5) is rect$(\omega/2)e^{-j5\omega}$.
+
+
+\vspace*{0.5cm}
+
+Hint: $\mbox{rect}$ is given as
+
+\begin{equation}
+\text{rect}(x) = \left\{\begin{array}{r@{\quad:\quad}l}
+ 0 & |x|>0.5 \\ 0.5
+& |x|=0.5 \\ 1  & |x|<0.5
+\end{array} \right.
+\end{equation}
+
+\noindent and sinc(x) is given as sinc(x)=$\frac{\sin{x}}{x}$
+
+\end{enumerate}
+
+\bigskip
+\hrule \medskip
+
+\pagebreak
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q3}. \highlight{\textbf{Ordinary Differential Equations}}: (Dr. Shanbhag )
+\label{q3}
+\bigskip
+
+The elementary reactions:
+%
+\begin{align*}
+A + B & \rightarrow C + B \\
+C & \rightarrow D,
+\end{align*}
+%
+lead to the following kinetic equations which describe the variation of the concentration $c_i$ ($i = A, B, C, D$):
+%
+\begin{align*}
+\frac{dc_A}{dt} & = -k_1 c_A c_B \\
+\frac{dc_C}{dt} & = k_1 c_A c_B - k_2 c_C\\
+\frac{dc_D}{dt} & = +k_2 c_C
+\end{align*}
+% 
+Assume $c_A(0) = 1$, $c_B(0) = 1$, and $c_C(0)=c_D(0)=0$. Note that $c_B$ does not change with time, and $c_D(t) = c_A(0) - c_A(t) - c_C(t)$. This means we only have to solve the first two equations. Let us set $\mathbf{c} = [c_A~~~c_C]^T$.
+
+\begin{enumerate}[a)]
+\item We can write the kinetic equations as:
+$$\frac{d\mathbf{c}}{dt} = \mathbf{f}(t,\mathbf{c}).$$
+Find the corresponding Jacobian matrix $\mathbf{J}_f(\mathbf{c})$. (30 points)
+\item One method to diagnose stiffness is to consider the condition number of this Jacobian matrix. If $k_1 = 1$, and $k_2 = 0.5$, what is the condition number? What is the condition number if $k_1 = 1$, and $k_2 = 10,000$. Comment on the stiffness of the problem in the two cases. (20 points)
+\item Use RK45 to solve the two cases above, and report the amount of time required to solve it. You may use a canned routine, and set the relative tolerance to $10^{-6}$. (30 points)
+\item Comment on the following statement: ``One simply cannot use forward Euler to solve a stiff initial value problem to a specified level of accuracy." (20 points)
+
+
+\end{enumerate}
+
+\bigskip
+\hrule \medskip
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q4}. \highlight{\textbf{Partial Differential Equations}} (Dr. Ye)
+\label{q4}
+\bigskip
+
+Consider the heat equation
+\begin{align*}
+\frac{\partial^2 h}{\partial x^2} + \frac{\partial^2 h}{\partial y^2} & = \frac{\partial h}{\partial t},~~~ 0 < x, y < 1; t > 0 \\
+h(x,y,0) & = 0
+\end{align*}
+
+with the boundary conditions
+\begin{align*}
+h(1,y,t) = h(x,1,t) & = 1\\
+\frac{\partial h}{\partial x}(0,y,t) = \frac{\partial h}{\partial y}(x,0,t) & = 0.
+\end{align*}
+
+The initial condition  indicates that $h$ is zero everywhere at the beginning ($t = 0$), even at the Neumann boundaries (left and bottom boundaries). At the Dirichlet boundaries (right and top boundaries), $h$ = 1 for all the time including the initial time, $t = 0$.  
+
+\medskip
+
+The exact solution is given by
+$$h(x,y,t) = 1 - \sum_{n=1}^{\infty} \sum_{m=1}^{\infty} C_{nm} \cos \left[\frac12 (2n-1)\pi x \right] \cos \left[\frac12 (2m-1)\pi y \right] \exp\left[-\frac{\pi^2 t}{4} \left((2m-1)(2n-1)\right) \right]$$
+where
+$$C_{nm} = \frac{16 (-1)^{n+1} (-1)^{m+1}}{\pi^2 (2m-1)(2n-1)}$$
+and $m$ and $n$ values are always taken large enough to avoid oscillation.   
+
+\medskip
+
+This is a transient problem, and the solution, $h(x,y,t)$, changes with time. We wish to solve this problem by finite differences and compare our results with the known analytical solution. Let us choose a finite difference grid with spatial intervals $\Delta x = \Delta y = 0.1$.
+
+\medskip
+
+(a) Write a code (MATLAB, FORTRAN, or any language of your preference) to evaluate the analytical solution. Explain how you select the maximum values of the coefficients $n$ and $m$. (5 points) 
+
+\medskip
+
+\textbf{The questions below are for the explicit finite difference method.}
+
+\medskip
+
+(b) Write a code capable of solving this problem by the explicit finite difference method. (10 points)
+
+\medskip
+(c) The stability condition for the this two-dimensional problem is,
+$$\frac{\Delta t}{(\Delta x)^2} + \frac{\Delta t}{(\Delta y)^2} \leq \frac12$$ Compute the stability limit of $\Delta t$ for this problem. 
+
+\medskip
+(d) Run your program up to $t = 1$ twice, once by using a $\Delta t$ equal to the stability limit, and once by using a $\Delta t$ which exceeds the former by 0.0002.
+
+\medskip
+(e) Plot $h$ versus $t$ from both solutions at point (0.9, 0.1), and $h$ versus $x$ at $y = 0.1, t = 0.225$ (or close to this $t$ value). What do you see, and why? (10 points)
+
+\medskip
+(f) Evaluate the analytical solution at point (0.9, 0.1) as a function of time and compare with the numerical solutions. Plot the difference between the analytical and numerical solution in each case as a function of time. Explain your results. (10 points)
+
+\medskip
+\textbf{The questions below are for the implicit finite difference method.}
+\medskip
+
+(g) Write a code capable of solving the problem by the implicit finite difference method. (10 points)
+
+\medskip
+(h) Run your program up to $t = 1$ twice, once by using a $\Delta t$ equal to the stability limit, and once by using a $\Delta t$ equal to 0.05. 
+
+\medskip
+(i) Plot $h$ versus $t$ from both solutions at point (0.9, 0.1), and $h$ versus $x$ at $y = 0.1, t = 0.225$ (or close to this t value). What do you see, and why? (10 points)   
+
+\medskip
+(j) Evaluate the analytical solution at point (0.9, 0.1) as a function of time and compare with the numerical solutions. Plot the difference between the analytical and numerical solution in each case as a function of time. Explain your results. (10 points)    
+
+\medskip
+(k) Compare the results of (f) and (j). If there are differences, explain them. (5 points)    
+
+\bigskip
+\hrule \medskip
+
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q5}. \highlight{\textbf{Linear Algebra}} (Dr. Peterson)
+\label{q5}
+\bigskip
+
+Suppose that $A$ is an $n \times n$ symmetric  matrix and we want to perform the decomposition
+$$A=L D L^T$$
+where $L$ is an $n \times n$ {\it unit}\/  lower triangular and $D$ is an $n \times n$ diagonal matrix.
+
+\smallskip
+
+\begin{enumerate}[a)]
+\item Derive the equations for the entries of $L$ and $D$ in terms of the entries $A_{ij}$ of $A$  and any previously computed entries of $L$ or $D$. (40\%)  
+
+\item Write an algorithm using pseudo-code  for obtaining this decomposition. (20\%) 
+
+\item Determine the number of additions/subtractions and multiplications/divisions  required for this decomposition. (25\%)  
+
+\item Are there any advantages or disadvantages to this decomposition over the standard Cholesky decomposition? (15\%)   
+
+\end{enumerate}
+
+\bigskip
+\hrule \medskip
+
+\pagebreak
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q6}. \highlight{\textbf{Linear Algebra}} (Dr. Burkardt)
+\label{q6}
+\bigskip
+
+\begin{enumerate}[a)]
+
+
+\item Suppose that the real $n$ by $n$ matrix $A$ is {\it{strictly}} upper triangular,
+that is, the lower triangle and the diagonal are zero.  The eigenvalues of an upper
+triangular matrix appear on the diagonal, so we know that the only eigenvalue for
+$A$ is zero.  Every matrix has at least one (nonzero!) eigenvector. 
+What is one eigenvector of $A$?
+\item Suppose that $B$ is an $n$ by $n$ matrix, and that we have computed
+the matrix $X$ whose columns are eigenvalues of $B$, and the diagonal matrix
+$\Lambda$, whose diagonal entries are the corresponding eigenvalues.
+Write the matrix equation which relates $B$, $X$ and $\Lambda$.
+If we wish to compute the value of $B^{100}$, one way is simply to carry
+out 99 matrix multiplications.  However, suppose that the eigenvector
+matrix $X$ is an orthogonal matrix, and describe a formula for computing
+$B^{100}$ that is much cheaper.
+\item Suppose that $C$ is an $n$ by $n$ upper triangular matrix of 1's,
+and consider the problem of determining a solution of the linear system $C*x=b$
+for the unknown vector $x$, given the vector $b$.  Write down the sequence
+of (scalar) equations that you would use to determine each entry of $x$,
+taking into acount the special form of this matrix.
+
+\end{enumerate}
+
+%\medskip
+%\hrule
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q7}. \highlight{\textbf{Parallel Programming - MPI}} (Dr. Burkardt)
+\label{q7}
+\bigskip
+
+A hole has been drilled into the earth to an underground reservoir of oil.  A pipeline has been created, consisting of 100 consecutive stations, with station 1 down there in the reservoir, and station 100 up at the surface.  There are 25 million barrels of oil in the reservoir, and it is desired to bring at least 24 million barrels of oil to the surface.
+
+\medskip
+
+The oil is moved by pumps from one station to the next higher one. Each pump has the property that, over the course of a day, it can move 15\% of the oil at that station to the next higher station.  There is a pump at every station except the last, where the oil is collected in a gigantic tub.  
+
+\medskip
+
+We measure oil in millions of barrels, so $U(1)$ is initially 25, and we want to pump until
+$U(100)$ is at least 24.  A simplified model allows us to start from a list $U()$ of the amount of oil at each station at the beginning of a day, and determine $V()$, the amount
+at the end of the day:  
+
+\begin{eqnarray*}
+V(1) =& 0.85 * U(1)\\
+V(2) =& 0.15 * U(1) + 0.85*U(2)\\
+...&\\
+V(99) =& 0.15 * U(98) + 0.85 * U(99)\\
+V(100) =& 0.15*U(99) + 1.00 * U(100)
+\end{eqnarray*}
+(Note that U(100) has a coefficient of 1 in the last equation!)
+
+\begin{enumerate}[a)]
+
+\item Write a program that will:
+\begin{enumerate}[(i)]
+  \item{initialize the first entry of U to be 25, the remaining entries zero;}
+  \item{compute V, the updated value of U for the end of the day;}
+  \item{if V(100) is at least 24, stop, printing the number of days;}
+  \item{Otherwise, set U = V and return to step 2.}
+\end{enumerate}
+Your code may be in pseudocode, or a standard computer language, and you do {\underline{not}} need to run it.
+
+\item Rewrite your program from part a) to use MPI.  Assume that you only have two MPI processes available.  Write your program in such a way that you can hope it will run about twice as fast as your original program.  Your program should also measure and report the program execution time.  Again, you do {\underline{not}} need to run the program.
+
+You are free to present your program as a complete or partial program in a standard language,
+or in pseudocode.  However, your answer must specify all important MPI issues, including initialization and shutdown. For instance, instead of a full call to {\bf{MPI\_Send()}}, it would be clear enough to say {\it{``Use MPI\_Send() to send the value of {\bf{i}} to process {\bf{0}}''}}.
+
+\end{enumerate}
+
+\bigskip
+\hrule \medskip
+
+\pagebreak
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q8}. \highlight{\textbf{Statistics}}: (Dr. Slice)
+\label{q8}
+\bigskip
+
+Consider the standard normal, Student's $t$, $\chi^2$, and the Fisher-Snedecor distributions.
+
+\begin{enumerate}[a)]
+\item Describe these distributions.
+\item Discuss their use.
+\item Discuss the relationship amongst them.
+\item Where does the binomial distribution fit in?
+\item Why are we so obsessed with the standard normal?
+\item Outline a program to statistically test whether or not two samples are drawn from populations having the same mean \textit{without} reference to any of the above distributions.
+\end{enumerate}
+
+
+\bigskip
+\hrule \medskip
+
+\pagebreak
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q9}. \highlight{\textbf{Approximation}}: (Dr. Wang)
+
+\bigskip
+
+
+Suppose we have 4 discrete points on the $x-y$ plane: $(0.1, 1.1)$, $(0.9, 2.0)$, $(3.1, 3.8)$, $(5.3, 6.5)$. 
+
+\begin{enumerate}[a)]
+\item Use least-squares approximation to find the straight line $y = ax + b$ that best approximates these points (minimize the squared error in $y$).
+
+\item Find the straight line $Ax + By = C$ that best approximates these points in the sense of least-squared distance from these points to the line.
+\end{enumerate}
+
+\bigskip
+\hrule \medskip
+
+\pagebreak
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q10}. \highlight{\textbf{Numerical Integration}}: (Dr. Beerli)
+
+\bigskip
+
+Integrate the function
+$$
+f(x,y) = \exp\left({\frac{-x^2}{2}}\right) \exp\left({\frac{-y^2}{2}}\right) + \exp{\left(\frac{-(x-3)^2}{10}\right)} \exp{\left(\frac{-(y-3)^2}{10}\right)}
+$$
+over $[-5,5]$ for $x$ and $y$.  
+
+\begin{enumerate}
+\item Give results for the Simpson's rule for $2^n$ points for $n$ in the range of 4 to 10.
+\item Report the error at each $n$. You may assume that the most accurate result above is the exact value of the integral.
+\item Write a Monte Carlo program that computes the result. Compare the accuracy of this result with the earlier results.  
+\end{enumerate}
+
+\bigskip
+\hrule \medskip
+
+\pagebreak
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q11}. \highlight{\textbf{Molecular Dynamics}} (Dr. Shanbhag)
+
+\bigskip
+
+Consider a 1D particle initially at $r = 0$ moving with a constant velocity of $v=+1$ units in a periodic lattice of ``gates" separated by a distance of $L = 1$ unit, as shown in figure below. When the particle ``arrives" at a gate, it is reflected back instantaneously (the direction of $v$ is reversed) with a probability of 0.5. If it is not reflected, it continues through the gate until it encounters another gate, where the same scenario unfolds again. The characteristic time between arrivals at gates is therefore $\tau = L/v = 1$ unit.
+
+\begin{center}
+\includegraphics[scale=0.4]{1ddiff}
+\end{center}
+
+At timescales much smaller than $\tau$, the particle moves with uniform velocity. At much larger timescales, the particle hops between gates, and its motion resembles simple 1D diffusion. Let us assume that we take snapshots of the particle at fixed intervals $\Delta t = 0.1 \tau$ for $\Delta t \leq t \leq N \Delta t$, with $N = 100,000$.
+
+\medskip
+
+We wish to compute the mean-squared displacement of the particle $\rho(t)$ according to equation:
+
+$$\rho(t = n \Delta t) = \frac{1}{N-n} \sum_{i=1}^{N-n} \left( r((i+n) \Delta t) - r(i \Delta t) \right)^2,\quad 1 \leq n \leq N-1.$$
+
+Write a program to compute $\rho(t)$ and plot it.
+
+\bigskip
+\hrule \medskip
+
+\pagebreak
+
+\pagebreak
+\hrule 
+\medskip
+\textbf{Q12}. \highlight{\textbf{PDEs}}: (Dr. Plewa)
+
+\bigskip
+
+Consider an explicit numerical solution for a one-dimensional heat equation:
+
+$$\frac{du}{dt} - k  \frac{d^2u}{dx^2} = f(x,t)$$ with boundary conditions $u(a,t) = u_a(t)$ and $u(b,t) = u_b(t)$, and initial condition $u(t_0) = u_0(x)$.
+
+\medskip
+
+A Fortran implementation of finite difference solver for this equation is available at John Burkardt's website\footnote{\url{http://people.sc.fsu.edu/~jburkardt/f_src/fd1d_heat_explicit/fd1d_heat_explicit.f90}}. Links to C, C++ and Matlab implementations are also provided there. Use the initial and boundary conditions for the sample test problem provided\footnote{\url{http://people.sc.fsu.edu/~jburkardt/f_src/fd1d_heat_explicit/fd1d_heat_explicit_prb.f90}}.
+
+\medskip
+
+You can either use the above code or implement the algorithm using programming language of your choice. Compile the code and build an executable. Obtain, analyze, and discuss the results for the following:
+
+\begin{enumerate}[a)]
+\item Code order verification: Using a self-convergence method estimate order of convergence of the above
+code in $L_1$, $L_2$, and $L_{\infty}$ norms. Present the results in a form of a table showing mesh resolution,
+error norms, and the corresponding code order of convergence for all norms.
+
+Note: Self-convergence method - constructing a series of solutions to a partial differential equation using a progressively better refined spatial and/or temporal mesh. Use the most refined mesh as a proxy for the true solution.
+
+\item Use $L_1$ norm, and demonstrate the effect of accumulation of round-off errors by conducting a series of
+test runs with progressively smaller time step for a fixed mesh resolution.
+
+\item How does the maximum stable time step depend on the mesh resolution for an explicit time integration scheme for
+the diffusion equation? Verify that theoretical result for the current algorithm implementation through a series of
+numerical experiments.
+
+\end{enumerate}
+
+\bigskip
+\medskip
+
+\pagebreak
+
+
+\end{document}  

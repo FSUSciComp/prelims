@@ -1,0 +1,534 @@
+% LaTeX Article Template - customizing header and footer
+\documentclass [11point]{article}
+
+% Set left margin - The default is 1 inch, so the following 
+% command sets a 1.25-inch left margin.
+
+\setlength{\oddsidemargin}{0.25in}
+% Set width of the text - What is left will be the right margin.
+% In this case, right margin is 8.5in - 1.25in - 6in = 1.25in.
+\setlength{\textwidth}{6.5in}
+
+% Set top margin - The default is 1 inch, so the following 
+% command sets a 0.75-inch top margin.
+%\setlength{\topmargin}{-0.25in}
+
+% Set height of the header
+\setlength{\headheight}{0.3in}
+
+% Set vertical distance between the header and the text
+\setlength{\headsep}{0.2in}
+
+% Set height of the text
+\setlength{\textheight}{9in}
+
+% Set vertical distance between the text and the
+% bottom of footer
+\setlength{\footskip}{0.1in}
+
+\parindent0pt
+\def \rn { {\rm I} \!\! \! {\rm R}^n }
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+
+
+% Set the beginning of a LaTeX document
+\begin{document}
+
+% Redefine "plain" pagestyle
+\makeatletter	   % `@' is now a normal "letter' for LaTeX
+\renewcommand{\ps@plain}{%
+     \renewcommand{\@oddhead}{\textrm{\small {\it DSC Prelim Exam -- Spring 2011}}\hfil\textrm{\thepage}}% 
+     \renewcommand{\@evenhead}{\@oddhead}%
+     \renewcommand{\@oddfoot}{}% empty footer
+     \renewcommand{\@evenfoot}{\@oddfoot}}
+\makeatother     % `@' is restored as a "non-letter" character
+
+\title{
+\hrule 
+\vspace{0.5cm} 
+\large Department of Scientific Computing \\
+Written Preliminary Examination \\
+Spring 2011 \\
+}         % Enter your title between curly braces
+\author{}        % Enter your name between curly braces
+\date{\today}          % Enter your date or \today between curly braces
+\maketitle
+
+% Set to use the "plain" pagestyle
+\pagestyle{plain}
+
+\hrule 
+\bigskip
+\textit{Instructions:}
+
+\bigskip
+
+Solve only 10 of the 11 questions as completely as you can.
+\vspace{0.25cm}
+
+All questions are weighted equally.
+\vspace{0.5cm}
+
+All parts of a question are weighted equally unless the percentage is explicitly state for each part.
+\vspace{0.5cm}
+
+If you use web sources, please list them clearly.
+\vspace{0.5cm}
+
+The exam is due back to Cecilia Farmer no later than 1:00 pm on Monday,
+January 10, 2011; no exceptions allowed.
+\vspace{0.5cm}
+
+If you have any questions related to this exam as you work on it, please send an e-mail to Dr. Sachin Shanbhag (sshanbhag at fsu dot edu). 
+\vspace{0.5cm}
+
+Write your Student ID on each of your answer sheets. Do not write your name on your answer sheets. When turning in your exam, include a cover page with your name and Student ID.
+\vspace{0.5cm}
+
+\medskip
+\hrule 
+
+\pagebreak
+\hrule 
+\medskip
+1. \textit{Ordinary Differential Equations}
+\bigskip
+
+Consider the general  boundary value problem (BVP) $$ y''(x) = f\big (x, y(x), y'(x) \big)\quad a < x < b \quad y(a)=y_L \quad y(b) = y_R $$ Assume that we want to approximate the solution to this problem.  To this end, we   discretize  the domain as $x_i=a+i \Delta x$, $i=0, N+1$ where $\Delta x = (b-a)/(N+1)$ and seek a discrete solution $Y_i  \approx y(x_i)$. \smallskip
+
+a.\quad  Write down a second order finite difference scheme for the specific problem where $f(x,y,y')= 2y'(x)+y(x)+4$ and demonstrate that it is second order.   Show that to solve this problem we need to solve a linear system.  What properties does the matrix have? \medskip
+
+b.\quad Suppose we want a higher order finite difference scheme such as ${\cal {O}}(\Delta x^4)$ for the  BVP  where
+$f(x,y,y')=y'(x) $.  Derive such a scheme and verify that it is indeed fourth order.  \medskip
+
+c.\quad  The continuous BVP where $f(x,y,y')= y'(x) +   y(x)  $ satisfies the property that the maximum value of $y$ in the interval $[a,b]$ has to occur at the boundary, i.e., at $a$ or $b$.  Does  your second order discrete solution  satisfy this property? If not, give a counterexample; if it does, prove it.  Assume $y_a \ne y_b \ne 0$.  \medskip 
+
+d.\quad  Consider the nonlinear BVP where $f(x,y,y')=y^2$ which you want to discretize using your second order scheme. Write down the finite difference method and precisely describe how you would recommend solving it. Give all details.  \medskip
+
+Point distribution:  Parts a-d 25\% each
+\medskip
+\hrule \medskip
+
+\pagebreak
+\hrule 
+\medskip
+2. \textit{Linear Algebra}
+\bigskip
+
+Consider the linear algebraic eigenvalue problem of finding a scalar $\lambda$ and a nonzero vector $\vec x$ such that $A\vec x = \lambda \vec x$ where $A$ is an $n \times n$ matrix; assume $A$ has real entries.  \smallskip
+
+a.\quad  A standard technique in matrix computations is to transform a problem into one that is simpler to solve.  What kind of transformations preserve eigenvalues?  Verify your statement.   Are the eigenvectors preserved or modified?  If they are preserved, then prove it; if they are modified, explain how.  \medskip
+
+
+
+b.\quad  A real matrix $A$ is diagonalizable if there exists a matrix $P$ such that $P^{-1}AP$ is a diagonal matrix. Find the matrix $P$ which diagonalizes $$A = \begin{pmatrix} \hfill 4 &  \hfill -2 & \hfill 1 \\ \hfill -2 & \hfill 4 & \hfill 1 \\ \hfill 1 & \hfill -2 & \hfill 4 \end{pmatrix}$$
+
+c.\quad  Prove or disprove the following statement:
+$$\hbox{ {\it Every invertible real matrix $A$ is diagonalizable.} } $$
+
+d.\quad Let $A$ be an $n \times n$   matrix with distinct positive eigenvalues.   Suppose we want to approximate the eigenvalue  of $A$ nearest $\mu$ and we want to use   the Inverse Power Method which is described below.
+\medskip
+
+\hskip.5in Given $ A, \vec x^0$ \par
+\hskip.5in for $k=1, 2,\ldots$ \par
+\hskip.5in $ \vec x^k  = \delta_k (A-\mu I)^{-1} \vec x^{k-1}$ \par
+where $\delta_k$ is an appropriately chosen scaling factor.  \medskip
+
+(i) Explain how you would efficiently implement this algorithm and determine the operation count for performing $q$ iterations. \smallskip
+
+(ii) Determine $\vec x$ such that $\lim_{k \to \infty} \vec x^k \to \vec x$ for the algorithm.  Justify your steps  and indicate how the matrix satisfies any assumptions you make. Relate $\vec x$ to the eigenvalue problem for $A$.  
+\smallskip
+
+(iii)  How could you use $\vec x^k$ to obtain an approximation to  the eigenvalue of $A$ nearest $\mu$?  Explain your answer.  \medskip
+
+Point distribution:  Parts a-c 20\% each; Part d 40\%.
+
+\bigskip
+\hrule 
+
+
+\pagebreak
+\hrule 
+\medskip
+3. \textit{Optimization}
+\bigskip
+
+Apply the steepest descent method to a three dimensional quadratic problem
+$$\min_X f({\bf X})={1\over 2}{\bf X}^TQ{\bf X}-c^T{\bf X}$$
+where
+$${\bf X}=(X_1, X_2, X_3)^T$$
+$$Q=\begin{pmatrix} 1 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 25 \end{pmatrix}, \qquad 
+c=\begin{pmatrix} -1 \\ -1 \\ -1 \end{pmatrix}$$
+with initial guess ${\bf X}_0=(0, 0, 0)^T$. \smallskip
+
+The steepest descent direction is
+$$p_k=-\nabla f({\bf X}_k)=-(Q{\bf X}_k-c)$$
+Conduct only 2 iterations and display for each iteration step-length,$\alpha_k$,
+\noindent $f({\bf X}_k), \ \nabla f({\bf
+X}_k)$ and $\|\nabla f({\bf X}_k)\|$.
+
+Hint: We assume that an exact line search is used so that with
+$${\bf X}_{k+1}={\bf X}_k+\alpha_k p_k$$
+$$\alpha_k=-{\nabla f({\bf X}_k)^Tp_k \over p_k^T Q p_k}$$
+or $$\alpha_k=-{g_k^Tg_k \over g_k^T Q g_k}$$
+The exact solution is : $$X^* = Q^{-1} c= \begin{pmatrix} -1 \\ -{1\over 5} \\ -{1\over 25} \end{pmatrix}$$
+
+\bigskip 
+\hrule
+
+\pagebreak
+\hrule
+\medskip
+4. \textit{Partial Differential Equations}
+\bigskip
+
+Consider the simple 1-D diffusion equation:
+$${\partial u\over \partial t}= {\partial^2 u\over \partial x^2} \qquad
+\quad 0<x<l, \quad t>0$$
+
+subject to
+$$u(0, t)=u(l, t)=0 \qquad t>0 \eqno(b.c.)$$
+$$u(x, 0)=u_0(x), \qquad 0<x\leq l \eqno(i.c.)$$
+Using Galerkin approximation with piecewise linear basis function which
+satisfy the boundary conditions
+$$\Phi_i(0)=\Phi_i(l)=0$$
+
+a.\quad Show that if we use approximate solution $$U(x,t)=\sum_{i=1}^N u_i(t)\Phi_i(x)$$
+That we obtain $$\sum_{j=1}^N \left \{{du_j\over dt}b_{ij}+u_jg_{ij}\right \}=0 \qquad i=1, 2,.., N$$
+\noindent where
+$$g_{ij}=\int_0^l {d\Phi_i \over dx}{d\Phi_j \over dx} \ dx\qquad i,j=1,
+2, ..., N \hbox{(stiffness matrix)}$$
+$$b_{ij}=\int_0^l \Phi_i \Phi_j \ dx \hbox{(mass matrix)}$$
+
+\noindent i.e., a system
+$$B\dot U+GU=b\qquad  (\hbox{here} \ b=0)$$
+\noindent where
+$$B=\left \{(\Phi_j, \Phi_i)\right \}$$
+$$G=\left \{a(\Phi_j, \Phi_i)\right \}$$
+
+b.\quad Show that if $h$ is the element size, we have that matrices $B$ and
+$G$ have the following entries
+
+$$B={h\over 6} {\left[ \begin{matrix} 4 & 1 & & & & & \\
+1 & 4 & 1 &  & & &  \\
+  & . & . & . & & &  \\
+  &   & . & . & . & &  \\
+  &   &   & . & . & . &  \\
+  &   &   &   & 1 & 4 & 1  \\
+  &   &   &   &   & 1 & 4 \end{matrix} \right ]}$$
+
+$$G={1\over h} \left[ \begin{matrix} 2 & -1 & & & & & \\
+-1 & 2 & -1 &  & & &  \\
+  & . & . & . & & &  \\
+  &   & . & . & . & &  \\
+  &   &   & . & . & . &  \\
+  &   &   &   & -1 & 2 & -1  \\
+  &   &   &   &   & -1 & 2 \end{matrix} \right]$$
+
+\noindent for piecewise linear hat basis functions on regular mesh.\smallskip
+
+(\textit{Hint}: Use Sylvester's formula for integration)\bigskip
+
+\bigskip 
+\hrule 
+
+
+
+\pagebreak
+\hrule 
+\medskip
+5. \textit{Computational Fourier analysis}
+\bigskip
+
+(a) Consider the signal $$f(t) = \sin\left( 50 \pi t \right) + \sin \left(160 \pi t \right) + \sin \left(250 \pi t \right) + \sin \left(480 \pi t \right) + \sin \left(630 \pi t \right).$$ 
+
+\medskip
+
+(i) Corrupt the signal $f(t)$ with a zero-mean random noise and graph the corrupted and original signals over an appropriate interval. Comment on the difference between the two signals. (20\%)
+
+\medskip
+
+(ii) Use FFT method (via MATLAB or any other software you prefer) to obtain (and plot) the power spectrum of the corrupted signal and identify from it the frequencies of the original signal. Use $ N = 2^9 = 512$. Show details of your work and comment on your answer. (40\%)
+
+\bigskip
+
+(b) Consider the differential equation $$\frac{\partial^2f}{\partial x^2}+ \frac{\partial^2f}{\partial y^2} = h(x,y),$$ where $h(x,y)$ is periodic in $x$ and $y$ with period $L$. Show (in steps) how discrete Fourier transform technique can be used to solve this differential equation. (40\%)
+
+\bigskip
+
+\hrule 
+
+
+
+
+
+
+\pagebreak
+\hrule 
+\medskip
+6. \textit{Partial differential equations: finite element method}
+\bigskip
+
+Consider the diffusion equation $$f_t = \alpha \nabla^2 f(\mathbf{x},t)+ s(\mathbf{x},t),$$ with $\mathbf{x} \in \Omega \subset \mathbb{R}^3$, $t \in [0,T]$, for some time interval $T$ and positive value of the parameter $\alpha$.   
+
+\medskip
+
+(a) State two physical situations where this equation applies and explain the significance of various terms in the two cases. (5\%)
+
+\medskip
+
+(b) If a Neumann boundary condition is to be applied over $\partial \Omega$ in the steady state, i.e., when $f_t = 0$ and in the absence of the source term $s$, what constraint must that boundary condition satisfy? Even with this constraint being satisfied, can one obtain a numerical solution in this case without imposing any additional condition? Explain. (20\%) 
+
+\bigskip
+
+Consider again the diffusion equation with non-trivial $f_t$ and $s$. Simplify this equation to a 1D situation and consider the initial and boundary conditions 
+$$ f(x,0) = h(x), \quad  f(0,t) = f_L,  \quad f(1,t) = f_R.$$
+The functions $s(x,t)$ and $h(x)$ are prescribed over the interval $0<x<1$, and $f_L$ and $f_R$ are constants.
+
+\medskip
+
+(c) \quad Derive a complete forward-time centered-space (FTCS) finite difference scheme to solve this initial-boundary value problem over the interval $0<x<1$. Use the notation $\Delta x$ and $\Delta t$ for grid size in space and time, respectively. Describe (in steps) how you will apply this scheme to solve the above problem for an arbitrary number of time steps. (40\%)
+
+\medskip
+
+(d) \quad Formally analyze the consistency and order of the FTCS scheme of part (c). (35\%)
+
+\bigskip
+
+\hrule 
+
+
+
+
+\pagebreak
+\hrule 
+\medskip
+7. \textit{Optimization}
+\bigskip
+
+Consider the BFGS Quasi-Newton (Q-N) algorithm with Q-N update given by $$ \mbox{(BFGS)} \qquad B_{k+1} = B_k  - \frac{B_k s_k s_k^T B_k}{s_k^TB_ks_k} + \frac{y_k y_k^T}{y_k^T s_k}.$$
+The algorithm starts with initial Hessian approximation $B_{\circ} = I$; $I$ being  the unit matrix. For $k = 0, 1, \ldots �$, if $x_k$ is optimal, stop.
+
+\medskip
+
+(i) Solve $B_k p_k = -\nabla f(x_k)$ for $p_k$, where $p_k$ is the search direction. Use a line search to determine $x_{k+1} = x_k + \alpha_k p_k$, where $\alpha_k$ is the step length.
+
+\medskip
+
+(ii) Compute intermediary quantities 
+$$ s_k = x_{k+1} - x_k 
+\quad \mbox{and} \quad 
+y_k = \nabla f(x_{k+1}) - \nabla f(x_k)$$
+then compute $$ \mbox{(BFGS)} \qquad  B_{k+1} = B_k  - \frac{B_k s_k s_k^T B_k}{s_k^TB_ks_k} + \frac{y_k y_k^T}{y_k^T s_k}$$
+
+\medskip
+
+(iii) Perform 2-3 iterations for BFGS Q-N for the 3-D quadratic problem: 
+
+$$
+f(x) = \frac{1}{2} x^T Q x -c^T x \quad \mbox{with} \quad  
+Q = \left( \begin{array}{ccc}
+2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & 4 \end{array} \right)     \quad \mbox{and} \quad 
+c =  \left( \begin{array}{c}
+-8 \\
+-9 \\
+-8 \end{array} \right) 
+$$
+whose exact solution is $x^* = (-4,-3,-2)^T$. We will use for this quadratic problem an exact line search:$$ \alpha = - \frac{p^T \nabla f(x)}{p^T Q p}$$
+with $B_{\circ} = I$ and $x_{\circ} = (0,0,0)^T$. At the first iteration of the Q-N BFGS, $\lVert \nabla f(x_{\circ}) \rVert = 14.4568$. Hence this point is not optimal. We must continue the iterative process. The first search direction can be obtained by taking the derivative of the quadratic function $f(x)$. Show that we finally obtain after 3 Q-N BFGS iterations: $$
+x_3 =  \left( \begin{array}{c}
+-8 \\
+-9 \\
+-8 \end{array} \right)
+\quad \mbox{and} \quad
+B_3 = \left( \begin{array}{ccc}
+2 & 0 & 0 \\
+0 & 3 & 0 \\
+0 & 0 & 4 \end{array} \right)    
+$$
+and now $\lVert \nabla f(x_3) \rVert = 0$, i.e., we have a local (in this case global) minimum. Why did Q-N BFGS converge in 3 iterations? Explain.
+
+\bigskip
+\hrule 
+
+
+
+
+\pagebreak
+\hrule 
+\medskip
+8. \textit{Parallel programming}
+\bigskip
+
+Write an OPENMP program in C or Fortran to compute all the prime numbers between 1 and 1000000. You will get full credit if your code satisfies the following condtions:\\
+1. It is parallel.\\
+2. Your code is supposed to be faster when run on a machine with more CPUs.\\
+3. It outputs all the prime numbers correctly.
+
+\bigskip
+\hrule 
+
+
+
+
+\pagebreak
+\hrule 
+\medskip
+9. \textit{Numerical ODE}
+
+\bigskip
+
+The higher-order ODE below,$$
+\frac{d^2 h}{dx^2} = \frac{C}{T} (h-h_{wt}), \quad h_{wt} = 100 + 0.06x - 0.00003x^2,$$
+is defined for a one-dimensional domain from $x = 0\,\rm{m}$ to $x = 1000\,\rm{m}$. The coefficients $T = 2.5 \times 10^{-5}$ m$^2$s$^{-1}$ and $C = 10^{-9}$ s$^{-1}$ are constant over the domain. The boundary condition at the left boundary is $h(x=0)=100\,\rm{m}$.  
+
+\medskip
+
+Answer the questions below for different boundary conditions:
+
+\medskip
+
+(i) Initial-value problem (25\%)  
+
+\smallskip
+
+Given the boundary condition at the left boundary, $q_w = -T \frac{dh}{dx}\Large|_{x=0} = 10^{-7}\,$m$^2$s$^{-1}$, transform the initial-value problem of second-order ODE into a set of first-order ODEs. Solve the first-order ODEs numerically (e.g., using MATLAB) and plot $h$ with $x$.
+
+\medskip
+
+(ii) Boundary-value problem (25\%)
+
+\smallskip
+Ignore the boundary condition of $q_w$ above, and use the boundary condition $h( x = 1000\,\rm{m})= 93\,\rm{m}$ at the right end of the domain. Solve the second-order ODE of this boundary condition using the shooting method. Plot $h$ with $x$ for the first and second guess and the final solution.
+
+\medskip
+
+(iii) Finite difference (50\%) 
+\smallskip
+
+The boundary condition at the right end of the aquifer ($x=1000\rm{m}$) now becomes  $\frac{dh}{dx}\Large|_{x=1000} = 0$. Solve the second-order ODE using the finite difference method and plot $h$ with $x$. 
+
+\bigskip
+\hrule 
+
+
+
+
+\pagebreak
+\hrule 
+\medskip
+10. \textit{Data structure}
+\bigskip
+
+I am interested in solving a 2-D differential equation on complex physical domain. 
+To this end, I generated a multi-domain grid (i.e., the physical domain is covered
+by a collection of simpler curvilinear meshes such that each point in the physical domain is 
+within one or more of these meshes). From a programmatic point of view, the grid is
+described by the following datastructure (I use a C++ structure, but could also have been Java 
+or Fortran 90): 
+\begin{verbatim}
+   class Grid {
+   private:
+     int nx, ny;   // number of points in the i and j directions
+     float **x;    // x(i,j), i = 0,...,nx-1
+     float **y;    // y(i,j), j = 0,...,ny-1
+     float area;   // area covered by the grid 
+	               // (precomputed once the grid is known)
+     ...           // additional variables, not of relevance here
+   public:
+     ...
+   };
+   
+   int nb_grids;
+   Grid* grid;
+\end{verbatim}
+
+The main program will take care of actually constructing {\tt{nb\_grids}} {\tt{Grid}} structures. 
+Of course, they will be in random order. Thus, the program maintains a list: 
+\begin{verbatim}
+  std::vector<Grid> gridList;
+\end{verbatim}
+with the areas in random order. This vector will contains tens of thousand of grids 
+(for a large-scale AMR method for example). 
+
+
+For reasons of efficiency, I am interested in 
+sorting these grids in order of increasing area. Thus, I require a new list:
+\begin{verbatim}
+   std::vector<Grid> sortedGridList;
+\end{verbatim}
+where the grid areas are sorted. 
+
+The numerical  algorithm requires finding the {\tt{Grid}} structure whose area is closest to a specified
+area $A$. This operation will be required millions, if not more, times. 
+
+\begin{itemize}
+\item[(a)] (35pts) Write a method that generates {\tt{sortedGridList}} starting from {\tt{gridList}}. 
+What is the asymptotic complexity of your algorithm? The chosen algorithm must be faster than $O(n^2)$. 
+(hash tables not allowed)
+\item[(b)] (35pts)
+Assuming that the adaptive grid is static (does not change during the course of the algorithm), 
+write a method in C++ with signature
+\begin{verbatim}
+  Grid* getGrid(float grid_area);
+\end{verbatim}
+that returns the grid whose area is closest to {\tt{grid\_area}}, using 
+{\tt{sortedGridList}}, defined above. {\tt{grid\_area}} is an arbitrary area. The algorithm must be 
+faster than $O(n)$. What is the asymptotic complexity of the algorithm? (hash tables not allowed.) 
+\item[(c)] (30pts) What types of datastructure problems would benefit from the use of hash tables? 
+What are the advantages and disadvantages of hash tables with respect to linked lists?
+\end{itemize}
+
+There is no need to actually code up the answers to the  questions, 
+although you can if you have the time (no additional points will be given though). 
+
+\bigskip
+\hrule 
+
+
+
+
+
+\pagebreak
+\hrule 
+\medskip
+11. \textit{Numerical differentiation}
+\bigskip
+Consider the function 
+$$
+  f(x) = e^x
+$$
+\begin{itemize}
+\item[(a)] (45pts) For an appropriate series of values for $h$ estimate the derivative of  
+   at $x$  using the first order formula 
+   $$
+   f'(x) \approx \frac{f(x+h)-f(x-h)}{2h}
+   $$
+   and estimate the value of $h$ that minimizes the 
+   error in the estimate of the derivative (without using the computer). 
+   Be sure your series of $h$ values is chosen to 
+   clearly support your conclusion of which $h$ value minimizes the error.
+   Compare this value of $h$ against the value found from computing the error numerically 
+   and plotting the error as a function of $\log(h)$, where $h=10^{-10}$ to $h=10^{-1}$.
+   Do all calculations and computations in single precision. 
+\item[(b)] (35pts) Repeat (a) in double precision. 
+\item[(c)] (20pts) for parts (a) and (b), explain why the errors in   
+     first decrease with decreasing $h$ and then, at some value of $h$, 
+	 begin to increase as $h$ decreases further.
+\end{itemize}
+
+\bigskip
+\hrule 
+
+
+
+
+
+
+\end{document}  

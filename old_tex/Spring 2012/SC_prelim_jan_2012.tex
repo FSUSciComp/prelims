@@ -1,0 +1,522 @@
+% LaTeX Article Template - customizing header and footer
+\documentclass [11point]{article}
+
+% Set left margin - The default is 1 inch, so the following 
+% command sets a 1.25-inch left margin.
+
+\setlength{\oddsidemargin}{0.25in}
+% Set width of the text - What is left will be the right margin.
+% In this case, right margin is 8.5in - 1.25in - 6in = 1.25in.
+\setlength{\textwidth}{6.5in}
+
+% Set top margin - The default is 1 inch, so the following 
+% command sets a 0.75-inch top margin.
+%\setlength{\topmargin}{-0.25in}
+
+% Set height of the header
+\setlength{\headheight}{0.3in}
+
+% Set vertical distance between the header and the text
+\setlength{\headsep}{0.2in}
+
+% Set height of the text
+\setlength{\textheight}{9in}
+
+% Set vertical distance between the text and the
+% bottom of footer
+\setlength{\footskip}{0.1in}
+
+\parindent0pt
+\def \rn { {\rm I} \!\! \! {\rm R}^n }
+
+\usepackage{graphicx,url}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath,color}
+
+
+% Set the beginning of a LaTeX document
+\begin{document}
+
+% Redefine "plain" pagestyle
+\makeatletter	   % `@' is now a normal "letter' for LaTeX
+\renewcommand{\ps@plain}{%
+     \renewcommand{\@oddhead}{\textrm{\small {\it DSC Prelim Exam -- Spring 2012}}\hfil\textrm{\thepage}}% 
+     \renewcommand{\@evenhead}{\@oddhead}%
+     \renewcommand{\@oddfoot}{}% empty footer
+     \renewcommand{\@evenfoot}{\@oddfoot}}
+\makeatother     % `@' is restored as a "non-letter" character
+
+\title{
+\hrule 
+\bigskip
+Department of Scientific Computing\\
+\textbf{Written Preliminary Examination} \\
+Spring 2012 \\
+}         % Enter your title between curly braces
+\author{}        % Enter your name between curly braces
+\date{January 6, 2012}          % Enter your date or \today between curly braces
+\maketitle
+
+% Set to use the "plain" pagestyle
+\pagestyle{plain}
+
+\hrule 
+\bigskip
+\textit{Instructions:}
+
+\bigskip
+
+\begin{itemize}
+\item Solve only 10 of the 12 questions as completely as you can. 
+
+\item All questions are weighted equally.
+
+\item All parts of a question are weighted equally unless stated otherwise.
+
+\item If you use web sources, please list them clearly.
+
+\item The exam is due back to Maribel Amwake no later than 1:00 pm on Monday, January 9, 2012; no exceptions allowed.
+
+\item If you have any questions related to this exam as you work on it, please send an e-mail to the person responsible, \textit{and} Dr. Sachin Shanbhag (sshanbhag at fsu dot edu). The person responsible is listed at the beginning of each question.
+
+\item Write your Student ID on each of your answer sheets. Do not write your name on your answer sheets. When turning in your exam, include a cover page with your name and Student ID.
+
+\end{itemize}
+
+\medskip
+\hrule
+
+\pagebreak
+\hrule 
+\medskip
+1. \textit{Optimization: Augmented Lagrangian} (Dr. Navon)
+\bigskip
+
+Consider the equality constrained problem $$\min f(x), \text{ subject to } g(x) = 0,$$ where $f:\mathbb{R}^n \rightarrow \mathbb{R}$, and $g:\mathbb{R}^n \rightarrow \mathbb{R}^m$ are continuously differentiable. The first order multiplier method finds, 
+
+$$x^k = \underset{x \in \mathbb{R}^n}{\operatorname{argmin}} ~ L_{\mu^k}(x,\lambda^k) \equiv f(x) + \lambda^{k^{\prime}} g(x) + \frac{\mu^{k}}{2} ||g(x)||^2.$$
+
+and updates $\lambda^{k+1} = \lambda^k + \mu^k g(x^k)$. It increases the penalty coefficient $\mu^k$ such that $\mu^{k+1} \ge \mu^k$.
+
+The algorithm of Augmented Lagrangian method is as follows:
+
+\begin{enumerate}
+\item Values of $x_0$, $\lambda_0$ and $\mu_0$ are chosen to initialize the method. Then for $k = 0,1,\cdots$, carry out optimality test: if $\nabla L(x_k , \lambda_k ) = 0$ then stop.
+\item Unconstrained minimization subproblem: Using any unconstrained minimization method you know solve:
+$$\underset{x}{\operatorname{min}} ~ L( x, \lambda_k , \mu_k ) = f(x) - \lambda_k^{T} g(x) + \frac{1}{2} \mu_k g(x)^T g (x)$$
+\item Update: Determine $\lambda_{k+1}$ and $\mu_{k+1}$.
+$$\lambda_{k+1} = \lambda_k - \mu_k g(x_k +1).$$
+The penalty parameter should be chosen so that
+$$\mu_k +1 \geq \mu_k$$
+This parameter should be large enough so that the augmented Lagrangian function has a local minimizer in $x$. If a failure is detected when attempting to solve this subproblem then penalty parameter $\mu_{k+1}$ should be increased.
+\end{enumerate}
+\medskip
+
+\textbf{Optimization Problem}
+
+$$\text{Minimize }f(x_1, x_2) = e^{3x_1} + e^{-4 x_2} \text{ subject to } g(x_1, x_2 ) = x_1^2 + x_2^2 - 1 = 0$$ using the Augmented Lagrangian method. The Augmented Lagrangian function is:
+$$L(x,\lambda,\mu) = e^{3 x_1} + e^{-4 x_2} - \lambda( x_1^2 + x_2^2 - 1) + \frac{1}{2} \mu(x
+_1^2 + x_2^2 - 1)^2$$
+
+We start at initial guess $x_0 = (-1,~1)^T$, together with $\lambda_0$ = -1. For this example we will keep the penalty parameter constant $\mu_0 = \mu_k = 10$.
+At initial point we have:
+\begin{equation*}
+\nabla f = \begin{bmatrix}  3 e^{3 x_1} \\ -4 e^{-4 x_2} \end{bmatrix} =
+\begin{bmatrix}   0.14936 \\ -0.07326 \end{bmatrix},~~~~~
+\nabla g = \begin{bmatrix}  2 x_1 \\ 2 x_2 \end{bmatrix} = \begin{bmatrix}   -2 \\ 2  \end{bmatrix}
+\end{equation*}
+
+and,
+
+\begin{equation*}
+\nabla^2 f = \begin{bmatrix}  9 e^{3 x_1} & 0 \\ 0 & 16 e^{-4 x_2} \end{bmatrix} =
+\begin{bmatrix}   0.44808 & 0 \\ 0 & 0.29305 \end{bmatrix}, ~~~~~
+\nabla^2 g = \begin{bmatrix}  2 & 0 \\ 0 & 2 \end{bmatrix}
+\end{equation*}
+
+We use Newton’s method for the unconstrained problem. For simplicity we use classical Newton method without a line search, that is: $x \leftarrow x - (\nabla_{xx}^2 L)^{-1} (\nabla_x L)$.
+
+For $x = x_0$, $$\nabla_x L = \begin{bmatrix} -21.851 \\ 21.927 \\ \end{bmatrix}, ~~~~~
+\nabla_{xx}^2 L =  \begin{bmatrix}  62.488 & -40.00  \\ -40.00 & 62.293 \\ \end{bmatrix}$$
+
+At this point, $x = [-0.78862, 0.78374]^T$, and $||\nabla_x L ||=7.1533$. Continue iterating with Newton’s method until $||\nabla_x L || \leq 10^{-9}$.
+
+\medskip
+Display only last iterates that satisfies above condition that is: $x_1 = [-0.71795, 0.63937]^T$. To complete the iteration of the Augmented Lagrangian method we update the Lagrange multiplier estimate:
+$$\lambda_1 =\lambda_0 - \mu_0 g(x_1 ) = -1 - 10(-0.075757) =-0.24243$$
+
+Now the whole process repeats at the new point. Complete writing the code for whole process that requires 6 full iterations of the Augmented Lagrangian method yielding a very accurate solution
+of: $x^∗ = [-0.74834, 0.66332]^T$, with $\lambda^* = -0.21233$.
+
+\medskip
+You can use books and Matlab to write the Augmented Lagrangian code for solving this problem.
+
+
+\bigskip
+\hrule \medskip
+
+
+\pagebreak
+\hrule 
+\medskip
+2. \textit{Ordinary Differential Equations/Molecular Dynamics} (Dr. Shanbhag)
+\bigskip
+
+Consider the equations of motion of a single particle in one dimension, where $r(t)$, $v(t)$, and $F(t)$ denote the position, velocity and force on the particle.
+%
+\begin{eqnarray*}
+\frac{dr}{dt} & = & v \\
+\frac{dv}{dt} & = & \frac{F}{m}
+\end{eqnarray*}
+%
+The Verlet algorithm considers a Taylor expansion of $r(t)$ as:
+$$r(t + \Delta t) = r(t) + v(t) \Delta t + \frac{F(t)}{2m} \Delta t^2 + \frac{d^3 r}{d t^3} \frac{\Delta t^3}{6} + O(\Delta t^4)$$
+which leads to an integration scheme that is fourth order in position, and second ordered in time.
+$$r(t + \Delta t) + r(t - \Delta t) = 2 r(t) + \frac{F(t)}{m} \Delta t^2 + O(\Delta t^4)$$
+$$v(t) = \frac{r(t + \Delta t) - r(t - \Delta t)}{2 \Delta t} + O(\Delta t^2)$$
+%
+Now consider the following scheme which is fourth order in both position and time.
+%
+\begin{eqnarray*}
+r(t+\Delta t) & = & r(t) + v(t) \Delta t + \frac{4F(t) - F(t- \Delta t)}{6m} \Delta t^2\\
+v(t+\Delta t) & = & v(t) + \frac{2 F(t+ \Delta t) + 5F(t) - F(t- \Delta t)}{6m} \Delta t^2
+\end{eqnarray*}
+
+\begin{itemize}
+\item Show that the equation for position update is the same as the Verlet algorithm for the given choice of $v(t+\Delta t)$. (50 points)
+\item How would you verify whether the equation for velocity update is fourth ordered? It is sufficient to describe your method, without actually carrying it out. (25 points)
+\item In a real molecular dynamics implementation, a small memory footprint is desirable. Naively (in the equations above), we need to maintain two copies of position and velocity (at $t$ and $t+\Delta t$), and three copies of force (at $t-\Delta t$, $t$ and $t+\Delta t$). Suggest a way to implement the scheme that requires the maintenance of the least number of copies (that you can think of)? (25 points)
+
+\end{itemize}
+
+\bigskip
+\hrule 
+
+\pagebreak
+\hrule 
+\medskip
+3. \textit{Interpolation} (Dr. Shanbhag)
+\bigskip
+
+The population of the US is given in the following table:
+
+\begin{center}
+\begin{tabular}{|c|r|}
+\hline 
+\textbf{Year} & \textbf{Population} \\ 
+\hline 
+1900 & 76,212,168 \\ 
+1910 & 92,228,496 \\ 
+1920 & 106,021,537 \\ 
+1930 & 123,202,624 \\ 
+1940 & 132,164,569 \\ 
+1950 & 151,325,798 \\ 
+1960 & 179,323,175 \\ 
+1970 & 203,302,031 \\ 
+1980 & 226,542,199\\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+There is a unique polynomial of degree 8 that interpolates these 9 data points, but that polynomial can be represented in many different ways. Consider the following possible sets of basis functions $\phi_j(t),~j = 1, ..., 9$: (i) $\phi_j(t) = t^{j-1}$, (ii) $\phi_j(t) = (t-1900)^{j-1}$, (iii) $\phi_j(t) = (t-1940)^{j-1}$, and (iv) $\phi_j(t) = ((t-1940)/40)^{j-1}$.
+
+\begin{itemize}
+\item For the four sets of basis functions generate the corresponding Vandermonde matrix, and compute the corresponding condition number (use of a library routine is fine)? Explain your observations.
+\item Using the best-conditioned basis, compute the polynomial interpolant. 
+\item Use Hermite cubic interpolation (again, use of a library routine is fine) to interpolate the data. Plot the data and both the interpolants.
+\item Extrapolate the population to 1990 using the two interpolants. How do they compare with the true value of 248,709,873 according to the 1990 census.
+\end{itemize}
+
+
+\bigskip 
+\hrule
+
+\pagebreak
+\hrule
+\medskip
+4. \textit{Finite Element} (Dr. Burkardt)
+\bigskip
+
+Suppose that $u \in H^1(\Omega)$ is a solution of the Poisson equation $- \Delta u = f$ in the domain $\Omega$, and that for some constant $\alpha > 0$, $u$ satisfies the mixed boundary condition 
+$\alpha u + \frac{\partial u}{\partial n} = 0$ on $\partial \Omega$.
+\vskip 0.1in
+Recall that $H^1(\Omega)$ is the set of functions $v : \Omega \rightarrow \mathbb{R}$ such that
+$v$ and all first derivatives of $v$ are square-integrable over $\Omega$.
+\vskip 0.1in
+(a) Show that $u$ satisfies the weak equation:
+\begin{displaymath}
+  \int_{\Omega} \nabla u \cdot \nabla v + \alpha \int_{\partial \Omega} u \, v = \int_{\Omega} f \, v \quad {\textrm{ for all }} v\in H^1(\Omega)
+\end{displaymath}
+\vskip 0.1in
+(b) For any $u, v \in H^1(\Omega)$, define:
+\begin{displaymath}
+  B(u,v) \equiv \int_{\Omega} \nabla u \cdot \nabla v + \alpha \int_{\partial \Omega} u \, v
+\end{displaymath}
+Show that $B(u,v)$ is an inner product on $H^1(\Omega)$.
+\vskip 0.1in 
+(c) Use your answer to (b) to show that a solution of the weak equation is unique.
+
+
+\pagebreak
+\hrule 
+\medskip
+5. \textit{Linear Algebra} (Dr. Burkardt)
+\bigskip
+
+\def \bfx{ {\vec x} }
+\def \bfb{ {\vec b} }
+\def \bfr{ {\vec r} }
+\def \rn  { {\rm I}\!\!{\rm R} ^{ n} } 
+
+Let $A$ be a given $m \times n$ matrix, where $m>n$, and suppose $A$ has rank $n$; let $\bfb $ be a given $m$-vector.  The standard linear least squares problem for $A \bfx = \bfb$ is to find a vector which minimizes $\rho^2(x) = \|r\|^2_2$ where $\bfr$ represents the residual $\bfr =  \bfb - A \bfx $ and $\|\cdot\|_2$ represents the standard $\ell_2$ vector norm.  We want to consider a generalization of this problem. 
+\smallskip
+With $A$ defined as above, let $B$ be a given symmetric positive definite $m \times m$ matrix.   
+Consider the problem of minimizing
+$$ \sigma^2(x) =\|r \|_22 \quad \hbox{over all $\bfx \in \rn$} \leqno{(\dagger)}$$
+where now, instead of $r$ being defined by the relationship $\bfb=A\bfx+\bfr$, 
+$r$ is instead implicitly defined by the relationship $\bfb=A\bfx+B\bfr$.  
+Clearly, if $B=I$ Problem ($\dagger$)  reduces to the standard linear least squares problem.
+\vskip 0.1in
+a.)\quad  Show that ($\dagger$) always has a solution. 
+\vskip 0.1in
+b.)\quad  Show that $\bfr \in {\cal N}\bigl( (B^{-1}A)^T \bigr)$;  be sure to justify why $B^{-1}A$ is defined. 
+\vskip 0.1in
+c.)\quad  Derive the analogue of the normal equations for this problem and explain how you would efficiently solve them.
+\vskip 0.1in
+d.)\quad Suppose we have the following data:
+\begin{center}
+\begin{tabular}{|r|r|r|r|r|r|r|}
+  \hline
+$t_i$&1 &2 & 4&5&10&16 \\
+\hline
+$f_i$&6 &1&2&3&4&5 \\
+  \hline
+\end{tabular}
+\end{center}
+Find the line which best fits the data in the least squares sense; for our generalized problem, this would imply $B=I$.  Now modify $B=I$ by setting $B(1,1)=100$ and keeping the remaining portion of $B$ set to the identity. Find the line which solves ($\dagger$)  with this new $B$.  
+Display your data points and the two approximating lines on one plot.  Discuss your results and the implication  of using a choice of $B \ne I$.
+
+\bigskip 
+\hrule 
+
+\pagebreak
+\hrule 
+\medskip
+6. \textit{Datastructures} (Dr. Beerli)
+\bigskip
+
+In phylogenetic research a key interest is finding the best relationship among species (finding the best tree). Define a datastructure that allows searching through all different such relationships with minimal operations. 
+\begin{itemize}
+\item Give an example of the structure for multifurcating trees. These are relationship trees that where more than two individuals can have the same ancestor. (20\%)
+\item Give at least one algorithm to change from one multifurcating tree to another. (25\%)
+\item Consider the following optimality criterion for a particular tree. Each species has a character that is measured on the interval $(-\infty, \infty)$.
+For simplicity we assume that each branchlength on the tree is 1.0. The optimality score for the whole tree is a weighted average of the values on the tips (leaves) trickled down to the root of the tree. For example, assume a tree with 3 species that have values $a=1.3$, $b=1.6$, and $c=8.0$. The optimality score of a tree, that combines $a$ with $b$ and then the ancestor $ab$ with $c$, calculates as ${\rm mean}({\rm mean}(1.3,1.6),8.0)=4.725$, but a tree with $((ac),b)$ results in $3.125$. We will pick the tree with the highest score as the best fitting tree.\\
+(a) Present an algorithm to calculate this optimality score for any tree, in particular consider multifurcating trees. (35\%)\\
+(b) After a rearrangement we need to recalculate the tree score, on large trees this leads to many unnecessary calculations, present a way to minimize the calculations after a rearrangement. You may consider that the root is arbitrary, and can be moved for calculations. I only expect pseudo code here. (10\%)\\
+(c) Present the optimality score for the {\bf best} tree using the data below. (10\%)
+\end{itemize}
+(You can present the structure, and algorithms in pseudocode or a real programming language, but no phylogenetic packages/subroutines/modules are allowed)
+
+Example dataset:\\
+\begin{tabular}{l r}
+Toad & 1.3\\
+Frog  & 1.3\\
+Newt & 1.3\\
+Snake & 5.0\\
+Monkey & 10.0\\
+Baboon & 11.0\\
+Fish & -4.0\\
+Whale & 8.0
+\end{tabular}
+
+\bigskip
+\hrule 
+
+
+\pagebreak
+\hrule 
+\medskip
+
+7. \textit{Linear Algebra} (Dr. Wang)
+\bigskip
+
+The matrix $C = (A^TA)^{-1}$, where $rank(A) = n$, arises in many
+statistical applications and is known as the
+\emph{variance-covariance matrix}. In this problem, we try to build
+an algorithm to calculate the diagonal of $C$. Assume that the
+factorization
+$$A = QR$$ is available.
+
+\begin{enumerate}
+\item Show that $C = (R^TR)^{-1}$.
+
+\item Show that if we write
+$$
+R = \left(
+\begin{array}{rr}
+\alpha & v^T \\
+0 & S
+\end{array} \right)
+$$
+then
+$$
+C = (R^TR)^{-1} = \left(
+\begin{array}{rr}
+(1+v^TC_1v)/\alpha^2 & -v^TC_1/\alpha \\
+-C_1v/\alpha & C_1
+\end{array} \right)
+$$
+where $C_1 = (S^TS)^{-1}$.
+
+\item Using (2), give an algorithm that overwrites the upper triangular
+portion of $R$ with the upper triangular potion of $C$.
+
+\item Show how many flops your algorithm requires.
+
+\end{enumerate}
+
+\bigskip
+\hrule 
+
+\pagebreak
+\hrule 
+\medskip
+
+8. \textit{Parallel Programming} (Dr. Wang)
+\bigskip
+
+Suppose the matrix $L$ is a $n\times n$ lower triangle matrix, $b$
+is an $n$ dimensional vector.
+
+\begin{enumerate}
+\item Write a Fortran, or C++ function to solve $Lx = b$.
+
+\item Try to convert your code to a parallel OpenMP program by inserting some directives.
+
+\item If (2) is impossible, please explain the reason. And please try to reorganize your code so that you can use OpenMP to parallelize it.
+\end{enumerate}
+
+\bigskip
+\hrule 
+
+
+
+
+\pagebreak
+\hrule 
+\medskip
+9. \textit{Fourier Analysis} (Dr. Meyer-Baese)
+\bigskip
+
+I.\quad A periodic signal g(t) is expressed by the following Fourier
+series:
+
+\begin{equation}
+g(t)= 2\cos 2t + 3 \cos(3t-\pi/2) + 5\sin(6t - \pi/3)
+\end{equation}
+
+\begin{enumerate}
+
+\item[a.] Sketch the exponential Fourier
+ series spectra.
+
+\item[b.] Write the exponential Fourier series for $g(t)$.
+
+
+\end{enumerate}
+
+II.\quad From the definition $G(\omega)=\int_{-\infty}^{\infty}
+g(t)\exp^{-j\omega t}dt $ show that the Fourier transform of rect
+(t-5) is sinc$(\omega/2)e^{-j5\omega}$.
+
+\vspace*{0.5cm}
+
+Hint: $\mbox{rect}$ is given as
+
+\begin{equation}
+rect(x) = \left\{\begin{array}{r@{\quad:\quad}l}
+ 0 & |x|>0.5 \\ 0.5
+& |x|=0.5 \\ 1  & |x|<0.5
+\end{array} \right.
+\end{equation}
+
+\noindent and sinc(x) is given as sinc(x)=$\frac{\sin{x}}{x}$
+
+\bigskip
+\hrule 
+
+\pagebreak
+\hrule 
+\medskip
+10. \textit{Partial Differential Equations} (Dr. Ye)
+\bigskip
+
+Heat flow in the earth is governed by the processes of conduction and convection. In regions where water is free to move, heat flow in the near surface (the top several hundred meters of the earth’s surface) is strongly affected by convection and the analysis of temperature change is quite complicated. In the Arctic, however, permafrost essentially renders water motion meaningless as a heat-flow mechanism. In these areas, conduction is the primary mechanism by which heat is transported in the crust and a relatively simple analysis may be appropriate. The equation for such a problem is:
+
+$$\frac{\partial T}{\partial t} = \frac{K}{\rho c} \frac{\partial^2 T}{\partial z^2} $$
+
+where $T$ is temperature, $z$ is depth below the surface, $t$ is time, $K$ is thermal conductivity,
+$c$ is heat capacity, and $\rho$ is density. Consider heat flow in the top 1,000m of the crust. The
+surface boundary condition is a specified temperature. The bottom boundary condition (at
+1km) is that the upward heat flux, $q$, equal to $K \Gamma_0$, where $\Gamma_0$ is the geothermal gradient, about $3^\circ$C per 100m. The thermal conductivity of rock and of permafrost is about 0.5 $cal~m^{-1} s^{-1} {}^\circ~C^{-1}$ and $\rho c$ is about 0.5 $cal~cm^{-3}~{}^\circ C^{-1}$.
+
+\begin{enumerate}
+\item Write a code to solve the temperature problem for permafrost regions. Explain
+how you determine the grid spacing.
+\item Use your code to calculate the steady-state temperature profile for a surface
+temperature of $-15^\circ C$. Start the computations with $T=0^\circ C$ everywhere.
+\item Starting with the steady-state temperature profile as the initial condition, calculate
+the temperature profile every decade under global warming conditions of a
+steadily increasing surface temperature at a rate of $3.5^\circ C$ per century.
+\end{enumerate}
+
+
+\bigskip
+\hrule 
+
+\pagebreak
+\hrule 
+\medskip
+11. \textit{Statistics} (Dr. Ye)
+
+\bigskip
+For a variable $X$, both confidence and credible intervals can be defined symbolically as Prob($l \le X \le u) =  1 - \alpha$ , where $l$ and $u$ are the lower and upper interval limits and $\alpha$ is significance level. However, the definition is interpreted in different ways when estimating regression confidence intervals and Bayesian credible intervals. Answer the following questions:
+
+\begin{enumerate}
+\item What are the conceptual differences between the two kinds of intervals?
+\item Describe how the two kinds of intervals may be calculated.
+\item Under what circumstances can one expect the two kinds of intervals to be the same?
+\item The two intervals are always different. What are possible reasons that render the two kinds of intervals different?
+\end{enumerate}
+
+For your convenience, you may limit your discussion in the context of parameter estimation and model predictions.
+
+\bigskip
+\hrule 
+
+\pagebreak
+\hrule 
+\medskip
+12. \textit{Integration} (Dr. Beerli)
+
+\bigskip
+
+Numerically integrate
+$$
+\int_{-5}^{5}\frac{\sin x^3}{x} dx
+$$
+\begin{itemize}
+\item Solve the integral using a composite midpoint rule. Show the improvement of the result for several number of subintervals. (30\%)
+\item Solve the integral using an iterative approach, Romberg integration. Show the improvement the results for several steps. (30\%)
+\item Solve the integral using Monte Carlo, give a table with the number of trials and improvement of accuracy of the result. (30\%) 
+\item Compare the effort and error for all three methods. (10\%)
+\end{itemize}
+
+\bigskip
+\hrule 
+
+
+
+
+\end{document}  
