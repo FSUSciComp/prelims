@@ -6,7 +6,7 @@
 
 _Spring_
 
-1. Numerical Linear Algebra (Dr. Peterson)
+1. Numerical Linear Algebra (Dr. Peterson) ✓
 2. Numerical Quadrature (Dr. Peterson)
 3. Numerical Integration (Dr. Shanbhag)
 4. Ordinary Differential Equations (Dr. Quaife)
@@ -17,6 +17,20 @@ _Spring_
 9. Fast Fourier Transform (Dr. Meyer-Baese)
 10. Data Structure (Dr. Erlebacher)
 11. Parallelization and Molecular Dynamics (Dr. Plewa)
+
+_Summer_
+
+1. Numerical Linear Algebra (Dr. Peterson)
+2. Approximation (Dr. Shanbhag)
+3. ODEs and Linear Algebra (Dr. Shanbhag)
+4. Monte Carlo (Dr. Shanbhag)
+5. ODE and Integral (Dr. Quaife)
+6. Numerical Integration (Dr. Burkardt)
+7. PDE and Finite Difference (Dr. Burkardt)
+8. Parallel Computing (Dr. Huang)
+9. Fast Fourier Transform (Dr. Meyer-Baese)
+10. Data Structure (Dr. Meyer-Baese)
+11. Q11. Optimization (Dr. Navon)
 
 ### 2015
 
