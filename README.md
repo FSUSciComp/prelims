@@ -2,17 +2,19 @@
 
 ## Question topics
 
+✓ - Information Gathered, ✓✓ - Final Notebook
+
 ### 2016
 
 _Spring_
 
 1. Numerical Linear Algebra (Dr. Peterson) ✓
-2. Numerical Quadrature (Dr. Peterson)
-3. Numerical Integration (Dr. Shanbhag)
-4. Ordinary Differential Equations (Dr. Quaife)
+2. Numerical Quadrature (Dr. Peterson) ✓
+3. Numerical Integration (Dr. Shanbhag) ✓
+4. Ordinary Differential Equations (Dr. Quaife) ✓✓
 5. Statistics (Dr. Ye)
 6. PDE Problem (Dr. Ye)
-7. Linear Algebra (Dr. Burkardt)
+7. Linear Algebra (Dr. Burkardt) ✓✓
 8. Optimization (Dr. Navon)
 9. Fast Fourier Transform (Dr. Meyer-Baese)
 10. Data Structure (Dr. Erlebacher)
@@ -39,8 +41,8 @@ _Spring_
 1. Numerical Linear Algebra (Peterson)
 2. Numerical Linear Algebra (Peterson)
 3. Approximation Theory (Gunzburger)
-4. Numerical ODEs (Erlebacher)
-5. Numerical Quadrature (Shanbahg)
+4. Numerical ODEs (Erlebacher) ✓
+5. Numerical Quadrature (Shanbahg) ✓✓
 6. Statistics (Beerli)
 7. Fourier Analysis (Meyer-Baese)
 8. Optimization (Wang)
@@ -51,11 +53,11 @@ _Spring_
 _Summer_
 
 1. Fast Fourier Transforms (Meyer-Baese)
-2. Linear Algebra (Wang)
+2. Linear Algebra (Wang) ✓
 3. Finite Elements (Burkardt)
 4. Numerical Linear Algebra/Eigenproblems (Peterson)
-5. Interpolation/Numerical Quadratures (Peterson)
-6. Numerical Differentiation (Shanbhag)
+5. Interpolation/Numerical Quadratures (Peterson) ✓
+6. Numerical Differentiation (Shanbhag) ✓
 7. Statistical Analysis (Ye)
 8. Numerical Optimization (Navon)
 9. Parallel Programming (Huang)
