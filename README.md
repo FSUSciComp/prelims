@@ -55,7 +55,7 @@ _Summer_
 1. Fast Fourier Transforms (Meyer-Baese)
 2. Linear Algebra (Wang) ✓
 3. Finite Elements (Burkardt)
-4. Numerical Linear Algebra/Eigenproblems (Peterson)
+4. Numerical Linear Algebra/Eigenproblems (Peterson) ✓✓
 5. Interpolation/Numerical Quadratures (Peterson) ✓
 6. Numerical Differentiation (Shanbhag) ✓
 7. Statistical Analysis (Ye)
