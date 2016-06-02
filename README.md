@@ -70,7 +70,7 @@ _Spring_
 
 1. Optimization (Dr. Navon)
 2. Fourier Analysis (Dr. Meyer-Baese)
-3. Integration and Approximation: (Dr. Shanbhag)
+3. Integration and Approximation: (Dr. Shanbhag) ✓
 4. Ordinary Differential Equations (Dr. Ye)
 5. Statistics (Dr. Ye)
 6. Parallel Programming - MPI (Dr. Burkardt)

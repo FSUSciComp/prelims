@@ -1,0 +1,1 @@
+In order to let q3.m file work, one should set the matlab paths to include the unzipped package 'bspline.zip'.
