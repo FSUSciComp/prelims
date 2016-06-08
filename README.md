@@ -77,7 +77,7 @@ _Spring_
 7. Finite Difference Methods (Dr. Peterson)
 8. Approximation: (Dr. Wang)
 9. Data structures: (Dr. Beerli)
-10. Numerical Integration (Dr. Beerli)
+10. Numerical Integration (Dr. Beerli) ✓
 11. PDEs: (Dr. Plewa)
 
 ### 2013
@@ -93,7 +93,7 @@ _Spring_
 7. Parallel Programming - MPI (Dr. Burkardt)
 8. Statistics: (Dr. Slice)
 9. Approximation: (Dr. Wang)
-10. Numerical Integration (Dr. Beerli)
+10. Numerical Integration (Dr. Beerli) ✓
 11. Molecular Dynamics (Dr. Shanbhag)
 12. PDEs (Dr. Plewa)
 
