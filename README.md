@@ -102,7 +102,7 @@ _Spring_
 _Spring_
 
 1. Optimization (Dr. Navon)
-2. Ordinary Differential Equations/Molecular Dynamics (Dr. Shanbhag)
+2. Ordinary Differential Equations/Molecular Dynamics (Dr. Shanbhag) ✓✓
 3. Interpolation (Dr. Shanbhag)
 4. Finite Element (Dr. Burkardt)
 5. Linear Algebra (Dr. Burkardt)
