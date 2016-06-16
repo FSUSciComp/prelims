@@ -39,7 +39,7 @@ _Summer_
 _Spring_
 
 1. Numerical Linear Algebra (Peterson)
-2. Numerical Linear Algebra (Peterson)
+2. Numerical Linear Algebra (Peterson) ✓
 3. Approximation Theory (Gunzburger)
 4. Numerical ODEs (Erlebacher) ✓
 5. Numerical Quadrature (Shanbahg) ✓✓
@@ -89,7 +89,7 @@ _Spring_
 3. Ordinary Differential Equations: (Dr. Shanbhag)
 4. Partial Differential Equations (Dr. Ye)
 5. Linear Algebra (Dr. Peterson)
-6. Linear Algebra (Dr. Burkardt)
+6. Linear Algebra (Dr. Burkardt) ✓
 7. Parallel Programming - MPI (Dr. Burkardt)
 8. Statistics: (Dr. Slice)
 9. Approximation: (Dr. Wang)

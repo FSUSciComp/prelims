@@ -1,0 +1,242 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+\section*{Spring 2015 Question 2}
+
+\subsection*{Part a} 
+We have to show that A is positive definite by showing $\vec{u}^TA\vec{u} > 0$.
+\begin{equation}
+\vec{u}^TA = 
+\begin{bmatrix}
+u_1 & u_2 & \dots & u_{m-1} & u_m
+\end{bmatrix}
+\begin{bmatrix}
+\frac{2}{h^2} & \frac{-1}{h^2} & 0 \\
+\frac{-1}{h^2} & \frac{2}{h^2} & \ddots \\
+0 & \ddots & \ddots 
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+\vec{u}^TA = 
+\dfrac{1}{h^2} 
+\begin{bmatrix}
+2u_1-u_2 & \left[-u_{i-1} + 2u_i - u_{i+1}\right]_{i=2}^{m-1} & 2u_m-u_{m-1}
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+\vec{u}^TA\vec{u} = 
+\dfrac{1}{h^2} 
+\begin{bmatrix}
+2u_1-u_2 & \left[-u_{i-1} + 2u_i - u_{i+1}\right]_{i=2}^{m-1} & 2u_m-u_{m-1}
+\end{bmatrix}
+\begin{bmatrix}
+u_1 \\ u_2 \\ \vdots \\ u_{m-1} \\ u_m
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+\begin{split}
+\vec{u}^TA\vec{u} &= 
+\dfrac{1}{h^2} 
+\left( 2u_1^2-u_1u_2 + \sum_{i=2}^{m-1} \left[-u_{i-1}u_i + 2u_i^2 - u_iu_{i+1}\right] + 2u_m^2-u_{m-1}u_m \right) \\
+&= 
+\dfrac{1}{h^2} 
+\left( u_1^2 + u_1^2 - u_1u_2 + \sum_{i=2}^{m-1} \left[-u_{i-1}u_i + u_i^2 + u_i^2 - u_iu_{i+1}\right] + u_m^2 + u_m^2 -u_{m-1}u_m \right) \\
+&= 
+\dfrac{1}{h^2} 
+\left( u_1^2 + \sum_{i=1}^{m-1} \left[ u_i^2 - u_iu_{i-1} - u_{i-1}u_i + u_{i+1}^2 \right] + u_m^2 \right) \\
+&= 
+\dfrac{1}{h^2} 
+\left( u_1^2 + \sum_{i=2}^{m-1} \left( u_i - u_{i-1} \right)^2 + u_m^2 \right)
+\end{split}
+\end{equation}
+All the squared terms are positive so $\vec{u}^TA\vec{u}$ is positive.
+
+\subsection*{Part b}
+\subsubsection*{i}
+Assume the iterative method stated in the problem doesn't converge such that 
+\begin{equation}
+\lim_{k \rightarrow \infty} ||\vec{x}^k - \vec{x}|| = \lim_{k \rightarrow \infty} e^k \neq 0
+\end{equation}
+Since $x^{k+1} = Px^k + c$,
+\begin{equation}
+\begin{split}
+e^{k} &= ||\vec{x}^k - \vec{x}|| \\
+&= || \vec{x}^{k-1} + c - (P\vec{x} + c) || \\
+&= ||P(\vec{x}^{k-1} - \vec{x})|| \\ 
+&= ||Pe^{k-1}|| \\
+&= ||P^2e^{k-2}|| \\
+& \hspace{0.5em} \vdots \\
+&= ||P^ke^0|| \\
+&= ||P^k|| \\
+\end{split}
+\end{equation}
+Since we assumed $\lim_{k \rightarrow \infty} e^k \neq 0$, $\lim_{k \rightarrow \infty} ||P^k|| \neq 0$. But we are given that $\lim_{k \rightarrow \infty} ||P^k||_\alpha = 0_{n \times n}$ in the question. So we have a contradiction. Therefore the method converges.
+\subsubsection*{ii}
+We have the general problem $B\vec{x} = \vec{f}$. Using the splitting method $B=M-N$, we show
+\begin{equation}
+\begin{split}
+B\vec{x} &= \vec{f} \\
+M\vec{x} - N\vec{x} &= \vec{f} \\
+\vec{x} &= M^{-1}\vec{f} + M^{-1}N\vec{x}
+\end{split}
+\end{equation}
+which is the Jacobi method $\vec{x}^{k+1} =  M^{-1}N\vec{x}^k + M^{-1}\vec{f}$ with M being a diagonal matrix and $N$ being all the off-diagonal elements (lower and upper). When we substitute $P = M^{-1}N$ and $c = M^{-1}\vec{f}$ we get the iterative method from our problem $\vec{x}^{k+1} = P\vec{x}^k + \vec{c}$. For our tridiagonal matrix $A$ we have $P_A = 0_{n \times n}$.
+\begin{equation}
+P_A = 
+\begin{bmatrix}
+\frac{h^2}{2} & 0 & 0\\
+0 & \frac{h^2}{2} & \ddots \\
+0 & \ddots & \ddots
+\end{bmatrix}
+\begin{bmatrix}
+0 & \frac{-1}{h^2} & 0\\
+\frac{-1}{h^2} & 0 & \ddots \\
+0 & \ddots & \ddots
+\end{bmatrix}
+= 
+\begin{bmatrix}
+0 & 0 & \hdots \\
+0 & 0 & \ddots \\
+\vdots & \ddots & \ddots
+\end{bmatrix}
+\end{equation}
+
+\subsection*{Part c}
+\subsubsection*{i}
+Our matrix $A$ (in part a) is symmetric positive definite so the splitting $A = M - N$ has $M$ containing the diagonal elements of $A$, and $-N$ containing all the subdiagonal elements of $A$. So $M=M^T$ which means $M^T-N$ is also s.p.d. (as $M-N$ is also s.p.d. which can be shown by part a above). By the Lemma given, the spectral radius $\rho(M^{-1}N) < 1$. This iterative method converges iff for matrix $P$, $\rho(P)<1$. In part b.ii we showed $P_A$ is a matrix of 0s so $\rho(P) = 0$.
+\subsubsection*{ii}
+To find which matrix will converge faster we can find the spectral radius of each matrix. The matrix with the smaller spectral radius converges faster; in this case, $\rho(B_1)=6$ and $\rho(B_1)=10$, so $B_1$ will converge faster using the Jacobi method.
+\subsection*{Part d}
+We can use the power method to find the spectral radius. Using the file \begin{verbatim}sp2015_2d.py \end{verbatim} we get the number of iterations for convergence of the power method, the dominant eigenvector, and the corresponding eigenvalue.
+\begin{lstlisting}
+After 8178 iterations.
+--------------------------
+Dominant eigenvector:
+[[-0.03077979]
+ [ 0.06153076]
+ [-0.09222411]
+ [ 0.12283109]
+ [-0.15332301]
+ [ 0.18367131]
+ [-0.21384751]
+ [ 0.2438233 ]
+ [-0.27357053]
+ [ 0.30306126]
+ [-0.33226774]
+ [ 0.36116247]
+ [-0.38971823]
+ [ 0.41790806]
+ [-0.44570533]
+ [ 0.47308375]
+ [-0.50001737]
+ [ 0.52648063]
+ [-0.55244836]
+ [ 0.57789585]
+ [-0.60279879]
+ [ 0.62713339]
+ [-0.65087631]
+ [ 0.67400475]
+ [-0.69649644]
+ [ 0.71832967]
+ [-0.73948329]
+ [ 0.75993677]
+ [-0.77967019]
+ [ 0.79866427]
+ [-0.81690037]
+ [ 0.83436056]
+ [-0.85102758]
+ [ 0.86688489]
+ [-0.88191668]
+ [ 0.89610789]
+ [-0.90944422]
+ [ 0.92191215]
+ [-0.93349896]
+ [ 0.94419275]
+ [-0.95398243]
+ [ 0.96285774]
+ [-0.9708093 ]
+ [ 0.97782857]
+ [-0.98390791]
+ [ 0.98904052]
+ [-0.99322055]
+ [ 0.99644303]
+ [-0.99870389]
+ [ 1.        ]
+ [-1.00032916]
+ [ 0.99969009]
+ [-0.99808245]
+ [ 0.99550686]
+ [-0.99196487]
+ [ 0.98745898]
+ [-0.98199263]
+ [ 0.97557024]
+ [-0.96819713]
+ [ 0.95987962]
+ [-0.95062493]
+ [ 0.94044124]
+ [-0.92933767]
+ [ 0.91732425]
+ [-0.90441195]
+ [ 0.89061265]
+ [-0.87593912]
+ [ 0.86040504]
+ [-0.84402496]
+ [ 0.82681433]
+ [-0.80878943]
+ [ 0.78996739]
+ [-0.77036616]
+ [ 0.75000453]
+ [-0.72890204]
+ [ 0.70707906]
+ [-0.68455666]
+ [ 0.66135669]
+ [-0.6375017 ]
+ [ 0.61301492]
+ [-0.58792026]
+ [ 0.56224228]
+ [-0.53600616]
+ [ 0.50923767]
+ [-0.48196314]
+ [ 0.45420946]
+ [-0.42600402]
+ [ 0.39737471]
+ [-0.36834985]
+ [ 0.3389582 ]
+ [-0.30922893]
+ [ 0.27919155]
+ [-0.24887591]
+ [ 0.21831216]
+ [-0.18753074]
+ [ 0.15656229]
+ [-0.12543768]
+ [ 0.09418793]
+ [-0.06284421]
+ [ 0.03143779]]
+Spectral radius:
+[[ 40794.13036297]]
+\end{lstlisting}
+
+\end{document}

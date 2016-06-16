@@ -1,0 +1,160 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+\section*{Spring 2013 Question 6}
+
+\subsection*{Part a} 
+We have to satisfy the equation $Ax=\lambda x \iff (A- \lambda I)x=0 \iff det(A- \lambda I)$.
+We know that if a matrix M is triangular, then $det(M)$ is the product of the entries on the main diagonal of M.
+
+\begin{equation}
+\begin{bmatrix}
+0 & a_{1,2} & a_{1,3} & \dots & a_{1,n} \\
+  & \ddots & a_{2,3} & \dots & \vdots \\
+  & & \ddots & \ddots & \vdots \\
+  & & & \ddots & a_{n-1,n} \\
+  & & & & 0
+\end{bmatrix}
+-
+\begin{bmatrix}
+\lambda & & & & \\
+ & \lambda & & 0 & \\
+ & & \lambda & & \\
+ & 0 & & \lambda & \\
+& & & & \lambda
+\end{bmatrix}
+=
+\begin{bmatrix}
+-\lambda & a_{1,2} & a_{1,3} & \dots & a_{1,n} \\
+  & -\lambda & a_{2,3} & \dots & \vdots \\
+  & & -\lambda & \ddots & \vdots \\
+  & & & -\lambda & a_{n-1,n} \\
+  & & & & -\lambda
+\end{bmatrix}
+\end{equation}
+
+To satisfy $det(A- \lambda I) = (-\lambda)(-\lambda)...(-\lambda) = 0$, we must have $\lambda=0$.
+
+\subsection*{Part b}
+Again, to satisfy $Ax=\lambda x \iff Ax=0$
+\begin{equation*}
+x=
+\begin{bmatrix}
+a \\
+0 \\
+\vdots \\
+0
+\end{bmatrix}
+\end{equation*}
+only when A is strictly upper triangular.
+
+\subsection*{Part c}
+C can be diagonalized. $C=U \Lambda U^{-1}$
+An efficient way to compute $C^100$ is to use this diagonalization such that
+\begin{equation}
+\begin{split}
+C^2 &= U \Lambda U^{-1} U \Lambda U^{-1} \\
+&= U \Lambda^2 U^{-1} \\
+C^{100} &= U \Lambda^{100} U^{-1}
+\end{split}
+\end{equation}
+Since $\Lambda$ is a diagonal matrix, each of the elements along the diagonal is simply raised to the power of the matrix, resulting in fewer computations.
+
+\subsection*{Part d}
+Defective: An $n \times n$ matrix A is a defective matrix iff it does not have $n$ linearly independent eigenvectors.
+
+\begin{equation}
+D^2 = 
+\begin{bmatrix}
+1 & 2 & 3 & 4 \\
+0 & 1 & 2 & 3 \\
+0 & 0 & 1 & 2 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\\
+D^3 = 
+\begin{bmatrix}
+1 & 3 & 6 & 10 \\
+0 & 1 & 3 & 6 \\
+0 & 0 & 1 & 3 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\\
+D^4 = 
+\begin{bmatrix}
+1 & 4 & 10 & 20 \\
+0 & 1 & 4 & 10 \\
+0 & 0 & 1 & 4 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\\
+D^4 = 
+\begin{bmatrix}
+1 & 5 & 15 & 35 \\
+0 & 1 & 5 & 15 \\
+0 & 0 & 1 & 5 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\end{equation}
+The top row of matrix $D^n$ corresponds to the nth diagonal in Pascal's triangle. If the top row of Pascal's triangle is 1, the element in the first row and last column of $D^{100}$ can be found in Pascal's triangle in the 103rd row and 4th column.
+\begin{center}
+\includegraphics[width=8cm]{pascalshighlighted.png}
+\end{center}
+
+\subsection*{Part e}
+Let's take a 4 by 4 matrix to see if we can find a pattern using back substitution.
+\begin{equation}
+\begin{bmatrix}
+1 & 1 & 1 & 1 \\
+0 & 1 & 1 & 1 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3 \\
+x_4
+\end{bmatrix}
+=
+\begin{bmatrix}
+b_1 \\
+b_2 \\
+b_3 \\
+b_4
+\end{bmatrix}
+\end{equation}\\
+First we let $x_4=b_4$. Then $x_3 + x_4 = b_3$ is equivalent to $x_3 + b_4 = b_3$ and so $x_3 = b_3 - b_4$. \\
+$x_2 + x_3 + x_4 = b_2 \iff x_2 + (b_3-b_4) + b_4) = b_2 \iff x_2 + b_3 = b_2 \iff x_2 = b_2 - b_3$ \\
+Similarly, $x_1 + b_2 = b_1$. \\
+
+An algorithm would be \\
+$x_n = b_n$ \\
+For $i=n-1$ to $1$: \\
+$\hspace{5px} x_i = b_i - b_{i+1}$
+
+\end{document}
