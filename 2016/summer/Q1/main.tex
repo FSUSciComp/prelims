@@ -28,7 +28,7 @@
 $$x^{k+1} = p x^k + c$$
 These are methods where the data in the equation remains fixed. Solve a linear system with an operator approximating the original one and based on a measurement of the error in the result. Jacobi, Gauss-Seidel, and Successive Over Relaxation (SOR) are three examples.
 \subsubsection*{Non-Stationary Iterative Method:}
-$$x^{k+1} = \sigma_k x^k + d_k$$
+$$x^{k+1} =  x^k + \sigma_k d_k$$
 These are methods where the data changes at each iteration. $\sigma_k$ and $d_k$ change for each iteration. $d_k$ called search direction and $\sigma_k$ is the step length. Krylov space method, Conjugate Gradient (CD), Generalized Minimal Residual (GMRES), BICG, and BICGSTAB are some examples of this method.
 
 
@@ -121,9 +121,10 @@ End Loop(k)
 For the Operation Count for each iteration we have: \\
 1) LU:	2N multiplications,	N additions \\
 2) Forward:	N multiplications,	N additions \\
-3) Backward:	2N multiplications,	N additions \\
-Total = 8N
-For P iteration we will have: Total = $8  P N $ $ \sim O(N)$
+3) Backward:	2N multiplications,	N additions\\
+4) RHS : $N^2$ Multiplications , N Subtractions \\
+Total = $9N + N^2 $ \\
+For P iteration we will have: Total = $9  P N + PN^2 $ $ \sim O(N^2)$
 \section*{e)}
 I have tested out three different examples, Symmetric Positive Definite, Diagonally dominant matrix and a general matrix.\\
 Theorem: \\
