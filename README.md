@@ -22,10 +22,10 @@ _Spring_
 
 _Summer_
 
-1. Numerical Linear Algebra (Dr. Peterson)
+1. Numerical Linear Algebra (Dr. Peterson) ✓
 2. Approximation (Dr. Shanbhag)
 3. ODEs and Linear Algebra (Dr. Shanbhag)
-4. Monte Carlo (Dr. Shanbhag)
+4. Monte Carlo (Dr. Shanbhag) ✓
 5. ODE and Integral (Dr. Quaife)
 6. Numerical Integration (Dr. Burkardt)
 7. PDE and Finite Difference (Dr. Burkardt)
