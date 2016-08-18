@@ -1,0 +1,90 @@
+\documentclass[11pt,a4paper,oneside]{article}
+\usepackage{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+\usepackage{sidecap}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+
+\title{ISC5907 - Prelim Preparation Class \\ 
+	 Spring 2013 Prelim Exam Question 5}
+\date{\today}
+\maketitle
+
+\section{Question 5: Linear Algebra Prelim Question}
+%##################################################
+% Question 1a
+\subsection{Question 1a: Deriving Equations for L and D}
+\begin{align}
+{\mathbf{A=LDL}^\mathrm{T}} & =
+\begin{pmatrix}   1 & 0 & 0 \\
+   L_{21} & 1 & 0 \\
+   L_{31} & L_{32} & 1\\
+\end{pmatrix}
+\begin{pmatrix}   D_1 & 0 & 0 \\
+   0 & D_2 & 0 \\
+   0 & 0 & D_3\\
+\end{pmatrix}
+\begin{pmatrix}   1 & L_{21} & L_{31} \\
+   0 & 1 & L_{32} \\
+   0 & 0 & 1\\
+\end{pmatrix} \\
+& = \begin{pmatrix}   D_1 &   &(\mathrm{symmetric})   \\
+   L_{21}D_1 & L_{21}^2D_1 + D_2& \\
+   L_{31}D_1 & L_{31}L_{21}D_{1}+L_{32}D_2 & L_{31}^2D_1 + L_{32}^2D_2+D_3.
+\end{pmatrix}
+\end{align}
+
+\begin{equation}
+D_j = A_{jj} - \sum_{k=1}^{j-1} L_{jk}^2 D_k
+\end{equation}
+\begin{equation}
+L_{ij} = \frac{1}{D_j} \left( A_{ij} - \sum_{k=1}^{j-1} L_{ik} L_{jk} D_k \right), \qquad\text{for } i>j
+\end{equation}
+
+Source: https://en.wikipedia.org/wiki/Cholesky\_decomposition
+
+% Question 1b
+\subsection{Question 1b: Pseudo-Code for $LDL^{T}$ Decomposition}
+\begin{algorithm}
+\caption{$LDL^{T}$ Decomposition}\label{euclid}
+\begin{algorithmic}[1]
+\Procedure{Compute}{}
+	\State $D_1 \gets A_{11}$
+	\State $L_{21} \gets \frac{A_{21}}{D_1}$
+	\For{\texttt{(i in 2...n)}}:
+		\State $D_i \gets A_{ii} \sum^{i-1}_{k=1} L^{2}_{ik} D_j$
+		\For{\texttt{(j in i...n)}}:
+			\State $L_{ij} \gets \frac{1}{D_j} (A_{ij} - \sum^{i-1}_{k=1} L_{ik} L_{jk} D_k)$
+		\EndFor
+	\EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Question 1c: Operation Count for $LDL^{T}$ Decomposition}
+This $LDL^{T}$ Decomposition requires $\frac{n^3}{3}$ operations. This makes it only about half
+as expensive as the LU decomposition, which is $\frac{2n^3}{3}$ operations (see Trefethen and Bau 1997).
+\hfill \break
+\hfill \break \noindent
+Source: https://en.wikipedia.org/wiki/Cholesky\_decomposition\#Computation \\
+Wikipedia gives the number of operation counts explicitly and states, with reference, that the LDLT
+decomposition uses the same number of operations.
+
+\subsection{Question 1d: Advantages over Cholesky Decomposition}
+$LDL^{T}$ Decomposition is very advantageous because it eliminates the need to compute square roots,
+which can be expensive to compute and can slow down the factorization.
+\hfill \break 
+\hfill \break \noindent
+Source: https://en.wikipedia.org/wiki/Cholesky\_decomposition\#Computation
+
+\end{document}

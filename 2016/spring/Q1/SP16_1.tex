@@ -1,0 +1,127 @@
+\documentclass[11pt,a4paper,oneside]{article}
+\usepackage{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+\usepackage{sidecap}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+
+\newenvironment{amatrix}[1]{%
+  \left[\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right]
+}
+
+\begin{document}
+
+\title{ISC5907 - Prelim Preparation Class \\ 
+	 Spring 2016 Prelim Exam Question 1}
+\date{\today}
+\maketitle
+
+\section{Question 1: Linear Algebra LU Decomposition}
+%##################################################
+\subsection{Question 1a: Equations for General LU Decomposition}
+\begin{align}
+{\mathbf{A=LU}} & =
+\begin{pmatrix}   I & 0 & 0 \\
+   L_2 & I & 0 \\
+   0 & L_3 & I \\
+\end{pmatrix}
+\begin{pmatrix}   U_1 & D_1 & 0 \\
+   0 & U_2 & D_2 \\
+   0 & 0 & U_3\\
+\end{pmatrix} \\
+& = \begin{pmatrix}
+		U_1 & D_1 & 0 \\
+		L_2 U_1 & L_2 D_1 + U_2 & D_2 \\
+		0 & L_3 D_1 + U_2 & L_3 D_2 + U_3
+\end{pmatrix} \\
+& = \begin{pmatrix}
+		U_1 & B_1 & 0 \\
+		L_2 U_1 & L_2 B_1 + U_2 & B_2 \\
+		0 & L_3 B_1 + U_2 & L_3 B_2 + U_3
+\end{pmatrix} \\
+& = \begin{pmatrix}
+	A_1 & B_1 & 0 \\
+	C_2 & A_2 & B_2 \\
+	0   & C_n & A_n
+\end{pmatrix}
+\end{align}
+	
+\begin{equation}
+U_j = A_j - L_j B_j
+\end{equation}
+\begin{equation} 
+D_j = B_j
+\end{equation}
+\begin{equation}
+L_{i} = (C_i - U_{i-1}) B_{i-2}^{-1}
+\end{equation}
+
+In this calculation, each $U_i$ and $L_i$ need not necessarily be triangular.
+There is nothing in the definitions and equations above requiring them to be.
+
+\subsection{Question 1b: Pseudo-Code for General LU Decomposition}
+\begin{algorithm}[H]
+\caption{Block LU Decomposition}\label{euclid}
+\begin{algorithmic}[1]
+\Procedure{Compute}{}
+	\State $U_1 \gets A_{1}$
+	\State $L_{2} \gets C_2 U_1^{-1}$
+	\For{\texttt{(i in 2,...,n)}}:
+		\State $U^T_{i-1} = L_\star U_\star \gets U^T_{i-1} L^T_i = C_i^T$
+		\For{\texttt{(k = 1,...,p)}}:
+			\State $z_k = U_\star l_k$ \texttt{\# $l_k$ is kth row-transpose of $L_i^T$}
+			\State $L_\star z_k = C_k$ \texttt{\# Forward solve for $z_k$}
+			\State $U_\star l_k = z_k$ \texttt{\# Back Solve}
+		\EndFor
+		\State $D_{i-1} \gets B_{i-1}$
+		\State $U_{i-1} \gets A_{i-1} - L_i B_{i-1}$
+	\EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Question 1c: Algorithm for Solving $A\vec{x} = \vec{b}$}
+\begin{algorithm}[H]
+\caption{Block LU Solve}\label{euclid}
+\begin{algorithmic}[1]
+\Procedure{Compute Forward Solve}{}
+	\State $A \gets L U$
+	\State $y \gets L^{-1}b$ 
+\EndProcedure
+\Procedure{Compute Backward Solve}{}
+	\State $x \gets U^{-1} y$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Question 1d: Operation Count for LU Decomposition}
+  Using the algorithm above as a means to compute the operation count, we have
+that the total number of operations for LU if A and B are tridiagonal and C is diagonal,
+$O(2np^{3})$ and if not diagonal, $O(\frac{2}{3} np^{3})$.
+
+\subsection{Question 1e: Example of Discretized DE System}
+   An example of where you'd run into a system like this, is in discretization of
+a Partial Differential Equation such as the Poisson Equation for Finite Differences
+using a 5-point stencil.
+
+\begin{equation}
+	\Delta f = - \frac{\partial^2 f}{\partial x^2} - \frac{\partial^2 f}{\partial y^2} = 0
+\end{equation}
+\begin{equation}
+	-u_{i,j-1} - u_{i-1,j} + 4u_{i,j} - u_{i,j+1} = h^2 f(i,j)
+\end{equation}
+\begin{equation}
+	{\mathbf{A}} & =
+\begin{pmatrix}   4 & -1 & \hdots & -1 & 0 & ...  \\
+				  -1 & 4 & -1 & \hdots & -1 & ...  \\
+				  \vdots & 0 & -1 & 4 & -1 & ...  \\
+				   -1 & \ddots & 0 & \ddots & \ddots & \ddots 
+\end{pmatrix}
+
+Source: https://en.wikipedia.org/wiki/Discrete\_Poisson\_equation
+
+\end{document}
