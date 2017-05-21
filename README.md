@@ -4,6 +4,22 @@
 
 ✓ - Information Gathered, ✓✓ - Final Notebook
 
+### 2017
+
+_Spring_
+
+1. Matrix (Dr. Quaife) 
+2. Partial Differential Equations (Dr. Quaife) 
+3. Linear Algebra (Dr. Peterson) 
+4. Ordinary Differential Equations (Dr. Meyer-Baese) 
+5. Interpolation (Dr. Shanbhag)
+6. Numerical Differentiation (Dr. Shanbhag)
+7. Quadrature (Dr. Shanbhag) 
+8. Optimization (Dr. Navon)
+9. Parallel Computing (Dr. Huang)
+10. Data Structure (Dr. Beerli)
+11. Statistics (Dr. Beerli)
+
 ### 2016
 
 _Spring_
