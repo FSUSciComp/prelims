@@ -16,8 +16,8 @@ _Spring_
 6. Numerical Differentiation (Dr. Shanbhag)
 7. Quadrature (Dr. Shanbhag) 
 8. Optimization (Dr. Navon)
-9. Parallel Computing (Dr. Huang)
-10. Data Structure (Dr. Beerli)
+9. Parallel Computing (Dr. Huang) ✓
+10. Data Structure (Dr. Beerli) ✓
 11. Statistics (Dr. Beerli)
 
 ### 2016

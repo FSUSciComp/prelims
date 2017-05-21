@@ -1,0 +1,4 @@
+Chimp_Cow 1.25
+Chimp_Cow_Bird 3.125
+Chimp_Cow_Bird_Toad 201.5625
+Chimp_Cow_Bird_Toad_SeaBass 100100.78125

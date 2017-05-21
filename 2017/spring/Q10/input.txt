@@ -1,0 +1,1 @@
+((((Chimp:1.0,Cow:1.0):2,Bird:3):3,Toad:6):2,SeaBass:8);

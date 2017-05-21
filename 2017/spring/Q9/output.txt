@@ -1,0 +1,19 @@
+pass: 0 process ID: 1 Eproc: 2.23607 guest atoms: 2 3
+pass: 0 process ID: 3 Eproc: 3.60555 guest atoms: 6 7
+pass: 1 process ID: 3 Eproc: 16.8652 guest atoms: 4 5
+pass: 0 process ID: 0 Eproc: 1 guest atoms: 0 1
+pass: 1 process ID: 0 Eproc: 11.5694 guest atoms: 6 7
+pass: 0 process ID: 2 Eproc: 3 guest atoms: 4 5
+pass: 1 process ID: 2 Eproc: 13.5694 guest atoms: 2 3
+pass: 2 process ID: 2 Eproc: 13.5694 guest atoms: 0 1
+pass: 1 process ID: 1 Eproc: 9.11438 guest atoms: 0 1
+pass: 2 process ID: 1 Eproc: 21.1051 guest atoms: 6 7
+pass: 2 process ID: 3 Eproc: 16.8652 guest atoms: 2 3
+pass: 2 process ID: 0 Eproc: 20.491 guest atoms: 4 5
+Energy calculated by parallel programming is: 72.0307
+time elapsed: 0.000239
+Energy calculated by sequential program is: 72.0307
+time elapsed: 1.00001e-06
+
+
+
