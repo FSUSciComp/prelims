@@ -1,0 +1,8 @@
+eigenvalue =
+ 
+ -(b*r + (b*r*(- 4*c^2*k^2 + 4*b*c*k + b*r))^(1/2))/(2*c*k)
+ -(b*r - (b*r*(- 4*c^2*k^2 + 4*b*c*k + b*r))^(1/2))/(2*c*k)
+ 
+Case 1 Elapsed time = 0.441643
+Case 2 Elapsed time = 0.011009
+Case 3 Elapsed time = 0.010285

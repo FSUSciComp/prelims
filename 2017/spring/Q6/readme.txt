@@ -1,0 +1,2 @@
+the matlab script q62.m compares the performance of centered difference formula and complex step derivative given different step sizes
+To run the code, using matlab to open q62.m and click the run buttom.
