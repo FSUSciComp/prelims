@@ -51,7 +51,7 @@ for i in range(N):
 		
 # Area is probability on In darts time the whole area which is 6 * 6
 AREA = 36. * N_IN/N
-print "AREA = " + str(AREA)
+print (AREA)
 
 # Plotting
 fig = plt.figure()
