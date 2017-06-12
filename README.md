@@ -23,9 +23,9 @@ _Spring_
 _Summer (May)_
 
 1. Linear Algebra (Dr. Peterson)
-2. Integration and Fourier Series (Dr. Shanbhag)
-3. Approximation (Dr. Shanbhag)
-4. Probability and Statistics (Dr. Shanbhag)
+2. Integration and Fourier Series (Dr. Shanbhag) ✓
+3. Approximation (Dr. Shanbhag) ✓
+4. Probability and Statistics (Dr. Shanbhag) ✓
 5. Finite Difference (Dr. Quaife)
 6. Optimization/Linear Programming (Dr. Quaife)
 7. Partial Differential Equations (Dr. Quaife)
@@ -60,8 +60,8 @@ _Summer_
 6. Numerical Integration (Dr. Burkardt)
 7. PDE and Finite Difference (Dr. Burkardt)
 8. Parallel Computing (Dr. Huang)
-9. Fast Fourier Transform (Dr. Meyer-Baese)
-10. Data Structure (Dr. Meyer-Baese)
+9. Fast Fourier Transform (Dr. Meyer-Baese) ✓
+10. Data Structure (Dr. Meyer-Baese) ✓
 11. Q11. Optimization (Dr. Navon)
 
 ### 2015
