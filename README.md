@@ -57,9 +57,9 @@ _Summer_
 3. ODEs and Linear Algebra (Dr. Shanbhag)
 4. Monte Carlo (Dr. Shanbhag) ✓
 5. ODE and Integral (Dr. Quaife)
-6. Numerical Integration (Dr. Burkardt)
-7. PDE and Finite Difference (Dr. Burkardt)
-8. Parallel Computing (Dr. Huang)
+6. Numerical Integration (Dr. Burkardt) ✓
+7. PDE and Finite Difference (Dr. Burkardt) ✓
+8. Parallel Computing (Dr. Huang) ✓
 9. Fast Fourier Transform (Dr. Meyer-Baese) ✓
 10. Data Structure (Dr. Meyer-Baese) ✓
 11. Q11. Optimization (Dr. Navon)
