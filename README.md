@@ -62,7 +62,7 @@ _Summer_
 8. Parallel Computing (Dr. Huang) ✓
 9. Fast Fourier Transform (Dr. Meyer-Baese) ✓
 10. Data Structure (Dr. Meyer-Baese) ✓
-11. Q11. Optimization (Dr. Navon)
+11. Q11. Optimization (Dr. Navon) ✓
 
 ### 2015
 
@@ -75,7 +75,7 @@ _Spring_
 5. Numerical Quadrature (Shanbahg) ✓✓
 6. Statistics (Beerli)
 7. Fourier Analysis (Meyer-Baese)
-8. Optimization (Wang)
+8. Optimization (Wang) ✓
 9. Finite Element Mathod (Burkardt)
 10. Stability and convergence of numerical PDEs (Plewa)
 11. Parallelization and performance of molecular dynamics code (Dr. Plewa)
