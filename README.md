@@ -42,8 +42,8 @@ _Spring_
 2. Numerical Quadrature (Dr. Peterson) ✓
 3. Numerical Integration (Dr. Shanbhag) ✓
 4. Ordinary Differential Equations (Dr. Quaife) ✓✓
-5. Statistics (Dr. Ye)
-6. PDE Problem (Dr. Ye)
+5. Statistics (Dr. Ye) ✓
+6. PDE Problem (Dr. Ye) ✓
 7. Linear Algebra (Dr. Burkardt) ✓✓
 8. Optimization (Dr. Navon)
 9. Fast Fourier Transform (Dr. Meyer-Baese) ✓
