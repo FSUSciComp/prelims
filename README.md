@@ -73,8 +73,8 @@ _Spring_
 3. Approximation Theory (Gunzburger)
 4. Numerical ODEs (Erlebacher) ✓
 5. Numerical Quadrature (Shanbahg) ✓✓
-6. Statistics (Beerli)
-7. Fourier Analysis (Meyer-Baese)
+6. Statistics (Beerli) ✓
+7. Fourier Analysis (Meyer-Baese) ✓
 8. Optimization (Wang) ✓
 9. Finite Element Mathod (Burkardt)
 10. Stability and convergence of numerical PDEs (Plewa)
