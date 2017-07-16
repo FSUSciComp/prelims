@@ -78,7 +78,7 @@ _Spring_
 8. Optimization (Wang) ✓
 9. Finite Element Mathod (Burkardt)
 10. Stability and convergence of numerical PDEs (Plewa)
-11. Parallelization and performance of molecular dynamics code (Dr. Plewa)
+11. Parallelization and performance of molecular dynamics code (Dr. Plewa) ✓
 
 _Summer_
 
@@ -90,7 +90,7 @@ _Summer_
 6. Numerical Differentiation (Shanbhag) ✓
 7. Statistical Analysis (Ye)
 8. Numerical Optimization (Navon)
-9. Parallel Programming (Huang)
+9. Parallel Programming (Huang) ✓
 10. Monte Carlo Integration (Shanbhag)
 11. Numerical Partial Differential Equations (Erlebacher)
 
