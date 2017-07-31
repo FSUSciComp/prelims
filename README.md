@@ -102,11 +102,11 @@ _Spring_
 2. Fourier Analysis (Dr. Meyer-Baese)
 3. Integration and Approximation: (Dr. Shanbhag) ✓
 4. Ordinary Differential Equations (Dr. Ye)
-5. Statistics (Dr. Ye)
+5. Statistics (Dr. Ye) ✓
 6. Parallel Programming - MPI (Dr. Burkardt)
 7. Finite Difference Methods (Dr. Peterson)
 8. Approximation: (Dr. Wang)
-9. Data structures: (Dr. Beerli)
+9. Data structures: (Dr. Beerli) ✓
 10. Numerical Integration (Dr. Beerli) ✓
 11. PDEs: (Dr. Plewa)
 
