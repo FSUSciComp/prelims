@@ -98,7 +98,7 @@ _Summer_
 
 _Spring_
 
-1. Optimization (Dr. Navon)
+1. Optimization (Dr. Navon) ✓
 2. Fourier Analysis (Dr. Meyer-Baese)
 3. Integration and Approximation: (Dr. Shanbhag) ✓
 4. Ordinary Differential Equations (Dr. Ye)
@@ -114,7 +114,7 @@ _Spring_
 
 _Spring_
 
-1. Optimization (Dr. Navon)
+1. Optimization (Dr. Navon) ✓
 2. Fourier Analysis (Dr. Meyer-Baese)
 3. Ordinary Differential Equations: (Dr. Shanbhag)
 4. Partial Differential Equations (Dr. Ye)
