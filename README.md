@@ -1,4 +1,4 @@
-# Preliminary Exams and Solutions
+﻿# Preliminary Exams and Solutions
  
 ## Question topics
 
@@ -22,17 +22,17 @@ _Spring_
 
 _Summer (May)_
 
-1. Linear Algebra (Dr. Peterson)
+1. Linear Algebra (Dr. Peterson) ✓
 2. Integration and Fourier Series (Dr. Shanbhag) ✓
 3. Approximation (Dr. Shanbhag) ✓
 4. Probability and Statistics (Dr. Shanbhag) ✓
-5. Finite Difference (Dr. Quaife)
-6. Optimization/Linear Programming (Dr. Quaife)
-7. Partial Differential Equations (Dr. Quaife)
-8. Parallel Programming (Dr. Huang)
-9. Fast Fourier Transform (Dr. Meyer-Baese)
-10. Data Structure (Dr. Meyer-Baese)
-11. Stability and Convergence of Numerical PDEs (Dr. Plewa)
+5. Finite Difference (Dr. Quaife) ✓
+6. Optimization/Linear Programming (Dr. Quaife) ✓
+7. Partial Differential Equations (Dr. Quaife) ✓
+8. Parallel Programming (Dr. Huang) ✓
+9. Fast Fourier Transform (Dr. Meyer-Baese) ✓
+10. Data Structure (Dr. Meyer-Baese) ✓
+11. Stability and Convergence of Numerical PDEs (Dr. Plewa) ✓
 
 ### 2016
 
@@ -103,9 +103,9 @@ _Spring_
 3. Integration and Approximation: (Dr. Shanbhag) ✓
 4. Ordinary Differential Equations (Dr. Ye)
 5. Statistics (Dr. Ye) ✓
-6. Parallel Programming - MPI (Dr. Burkardt)
+6. Parallel Programming - MPI (Dr. Burkardt) ✓
 7. Finite Difference Methods (Dr. Peterson)
-8. Approximation: (Dr. Wang)
+8. Approximation: (Dr. Wang) ✓
 9. Data structures: (Dr. Beerli) ✓
 10. Numerical Integration (Dr. Beerli) ✓
 11. PDEs: (Dr. Plewa)
@@ -115,14 +115,14 @@ _Spring_
 _Spring_
 
 1. Optimization (Dr. Navon) ✓
-2. Fourier Analysis (Dr. Meyer-Baese)
+2. Fourier Analysis (Dr. Meyer-Baese) ✓
 3. Ordinary Differential Equations: (Dr. Shanbhag)
 4. Partial Differential Equations (Dr. Ye)
-5. Linear Algebra (Dr. Peterson)
+5. Linear Algebra (Dr. Peterson) ✓
 6. Linear Algebra (Dr. Burkardt) ✓
-7. Parallel Programming - MPI (Dr. Burkardt)
-8. Statistics: (Dr. Slice)
-9. Approximation: (Dr. Wang)
+7. Parallel Programming - MPI (Dr. Burkardt) ✓
+8. Statistics: (Dr. Slice) ✓
+9. Approximation: (Dr. Wang) ✓
 10. Numerical Integration (Dr. Beerli) ✓
 11. Molecular Dynamics (Dr. Shanbhag)
 12. PDEs (Dr. Plewa)
@@ -133,16 +133,16 @@ _Spring_
 
 1. Optimization (Dr. Navon)
 2. Ordinary Differential Equations/Molecular Dynamics (Dr. Shanbhag) ✓✓
-3. Interpolation (Dr. Shanbhag)
+3. Interpolation (Dr. Shanbhag) ✓
 4. Finite Element (Dr. Burkardt)
 5. Linear Algebra (Dr. Burkardt)
 6. Datastructures (Dr. Beerli)
 7. Linear Algebra (Dr. Wang)
-8. Parallel Programming (Dr. Wang)
+8. Parallel Programming (Dr. Wang) ✓
 9. Fourier Analysis (Dr. Meyer-Baese)
 10. Partial Differential Equations (Dr. Ye)
 11. Statistics (Dr. Ye)
-12. Integration (Dr. Beerli)
+12. Integration (Dr. Beerli) ✓
 
 ### 2011
 
