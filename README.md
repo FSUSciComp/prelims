@@ -1,5 +1,10 @@
 ﻿# Preliminary Exams and Solutions
- 
+
+_Disclaimer_: This repository was built as a group effort to study and gather resources for the
+preliminary exam in the department of Scientific Computing at FSU.  The solutions are **not**
+verified and may be incorrect. If you find an error or wish to add questions from recent years,
+please submit a pull request. 
+
 ## Question topics
 
 ✓ - Information Gathered, ✓✓ - Final Notebook
